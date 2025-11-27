@@ -19,5 +19,8 @@ B.S. in Computer Science and Engineering, 서강대학교, Cum Laude
 ### Reviewed
 *  [[Optimization][Operator] Implement and enable Conv2d-Reshape-Add-ReLU fusion](https://github.com/apache/tvm/pull/18240) @ TVM
 
+* [ [TIR][Schedule] FuseReductionEpilogue: Add Relu support](https://github.com/apache/tvm/pull/18508) @ TVM
+
+* [[TIR][Schedule] FuseReductionEpilogue: Add Clipping pattern support ](https://github.com/apache/tvm/pull/18515) @ TVM
 
 
