@@ -14,8 +14,10 @@ B.S. in Computer Science and Engineering, 서강대학교, Cum Laude
 
 ## Research
 ### Accept
+
 ### Reviewed
 * Scalable High-Order Stencil Acceleration on Versal AI Engine via Tile-to-Tile Communication @ IEEE TPDS
+
 ## Open Source Contribution
 ### Merged
 * [ [TIR][Schedule] Add FuseReductionEpilogue primitive to fuse epilogue](https://github.com/apache/tvm/pull/18418) @ TVM
