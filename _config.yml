@@ -26,9 +26,9 @@ author:
   avatar           : "profile.jpg"
   name             : "Hyun Gyu Kim"
   pronouns         : # example: "she/her"  
-  bio              : "Short biography for the left-hand sidebar"
-  location         : "Earth"
-  employer         : "Red Brick University"
+  bio              : "TVM Contributor"
+  location         : "서울, 대한민국"
+  employer         : "TelePIX"
   uri              : # URL
   email            : "none@example.org" 
 
