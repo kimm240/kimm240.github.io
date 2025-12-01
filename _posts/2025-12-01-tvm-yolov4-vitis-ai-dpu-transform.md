@@ -206,10 +206,6 @@ def @main(%data: Tensor[(1, 3, 32, 32), float32], %weight1: Tensor[(16, 3, 3, 3)
 }
 ```
 
-## 참고 자료
-
-- **Resource-constrained FPGA Design for Satellite Component Feature Extraction**: https://ieeexplore.ieee.org/document/10115681
-
 [^1]: **Vitis-AI Model Zoo**: https://github.com/Xilinx/Vitis-AI/tree/master/model_zoo
 [^2]: **Vitis AI 지원 연산자**: https://docs.amd.com/r/en-US/ug1414-vitis-ai/Currently-Supported-Operators
 [^3]: **Vitis-AI/third_party/tvm**: https://github.com/Xilinx/Vitis-AI/tree/master/third_party/tvm
