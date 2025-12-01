@@ -190,6 +190,19 @@ def @main(%data: Tensor[(1, 3, 32, 32), float32], %weight1: Tensor[(16, 3, 3, 3)
   nn.max_pool2d(%2, pool_size=[5, 5], padding=[2, 2, 2, 2])
 }
 ```
+Relay IR 이후의 flow는 다음과 같습니다.
+
+```mermaid
+graph TD
+    A[원본 모델] --> B[TVM Frontend]
+    B --> C[Relay IR]
+    C --> D[partition_for_vitis_ai]
+    D --> E[PyXIR / XIR 변환]
+    E --> F[Vitis AI DPU 컴파일러]
+    F --> G[TVM Runtime Module]
+    G --> H[OTF Quantization]
+    H --> I[DPU 실행]
+```
 
 [^1]: **Vitis-AI Model Zoo**: https://github.com/Xilinx/Vitis-AI/tree/master/model_zoo
 [^2]: **Vitis AI 지원 연산자**: https://docs.amd.com/r/en-US/ug1414-vitis-ai/Currently-Supported-Operators
