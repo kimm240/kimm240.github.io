@@ -20,13 +20,13 @@ TVM은 Python API(tir.Schedule)를 제공하지만, 그 뒷단의 무거운 연�
 
 구현은 크게 세 단계로 나뉩니다.
 
-1. **Analysis (분석)**: `ReductionEpilogueFuser` 클래스
+1. Analysis: `ReductionEpilogueFuser` 클래스
    - 두 블록이 융합 가능한 조건인지 검사합니다.
 
-2. **Transformation (변환)**: `CreateFusedReductionBlock` 함수
+2. Transformation: `CreateFusedReductionBlock` 함수
    - Reduction Block의 T.init을 수정하고, 중간 버퍼를 교체합니다.
 
-3. **Substitution (대체)**: `SingleBlockFusionReplacer` 클래스
+3. Substitution: `SingleBlockFusionReplacer` 클래스
    - 기존의 두 블록을 도려내고, 새로 만든 융합 블록을 이식합니다.
 
 ## 3. Step 1: 패턴 분석기 (ReductionEpilogueFuser)
@@ -159,9 +159,7 @@ def fuse_reduction_epilogue(
 
 이로써 FuseReductionEpilogue 프리미티브의 구현이 모두 완료되었습니다.
 
-1. **패턴 분석**: 합쳐도 되는지 확인하고 (`ReductionEpilogueFuser`),
-2. **AST 조작**: Init을 0에서 Bias로 바꾸고 버퍼를 교체한 뒤 (`CreateFusedReductionBlock`, `BufferReplacer`),
-3. **트리 재구성**: 기존 블록을 새 블록으로 바꿔치기했습니다 (`SingleBlockFusionReplacer`).
+패턴 분석: 합쳐도 되는지 확인하고 (`ReductionEpilogueFuser`), AST 조작: Init을 0에서 Bias로 바꾸고 버퍼를 교체한 뒤 (`CreateFusedReductionBlock`, `BufferReplacer`), 트리 재구성: 기존 블록을 새 블록으로 대체했습니다 (`SingleBlockFusionReplacer`).
 
 이 세 단계를 통해 MatMul과 Bias Add를 하나의 Reduction Block으로 융합하여, 하드웨어의 MAC 명령어를 효율적으로 활용할 수 있게 되었습니다.
 

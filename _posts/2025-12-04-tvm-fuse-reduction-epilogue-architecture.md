@@ -197,11 +197,9 @@ C++ 측에서는 `ConcreteScheduleNode::FuseReductionEpilogue()`가 호출되고
 
 ## 요약
 
-이 시각화 가이드를 통해 `FuseReductionEpilogue` 프리미티브의 전체 아키텍처를 이해할 수 있습니다:
+이 시각화 가이드를 통해 `FuseReductionEpilogue` 프리미티브의 전체 아키텍처를 이해할 수 있습니다.
 
-1. 분석 단계: `ReductionEpilogueFuser`가 패턴을 검증하고 융합 가능 여부를 판단
-2. 변환 단계: `CreateFusedReductionBlock`과 `BufferReplacer`가 AST를 조작하여 새로운 융합 블록 생성
-3. 대체 단계: `SingleBlockFusionReplacer`가 기존 블록을 제거하고 새 블록으로 교체
+분석 단계에서 `ReductionEpilogueFuser`가 패턴을 검증하고 융합 가능 여부를 판단하고, 변환 단계에서 `CreateFusedReductionBlock`과 `BufferReplacer`가 AST를 조작하여 새로운 융합 블록 생성하며, 대체 단계에서 `SingleBlockFusionReplacer`가 기존 블록을 제거하고 새 블록으로 교체합니다.
 
 이 세 단계를 통해 MatMul과 Bias Add를 하나의 효율적인 Reduction Block으로 융합할 수 있게 됩니다.
 
