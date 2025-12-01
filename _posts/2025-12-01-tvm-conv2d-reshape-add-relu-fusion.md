@@ -15,19 +15,19 @@ tags:
 
 이 문서는 Conv2d + Bias + ReLU라는 매우 흔한 패턴이 PyTorch에서 넘어올 때 발생하는 특유의 문제점(Reshape 노드)을 해결하는 과정을 담고 있습니다.
 
-## 1. 개요 (Overview)
+## 1. 개요
 
 딥러닝 모델에서 가장 빈번하게 등장하는 패턴 중 하나는 Convolution -> Bias Add -> Activation(ReLU) 입니다. 대부분의 고성능 딥러닝 라이브러리(DNNL, cuDNN 등)는 이를 하나의 커널로 처리하는 기능을 제공합니다.
 
 하지만 PyTorch 모델을 TVM으로 가져올 때(Import), 예상치 못한 구조적 문제로 인해 이 퓨전(Fusion)이 깨지는 현상이 발견되었습니다. 본 보고서는 Conv2d-Reshape-Add-ReLU 패턴을 하나의 복합 함수(Composite Function)로 묶어, DNNL 백엔드에서 단일 커널로 실행되도록 최적화한 과정을 다룹니다.
 
-## 2. 문제 상황 (Problem Definition)
+## 2. 문제 상황
 
-### 2.1. PyTorch Frontend의 특이한 동작
+### 2.1. PyTorch Frontend
 
 일반적으로 우리는 Bias Add를 단순한 덧셈으로 생각합니다. 하지만 PyTorch 프론트엔드가 Conv2d(bias=True)를 Relax IR로 변환할 때, 브로드캐스팅(Broadcasting)을 명시하기 위해 Reshape 연산을 중간에 삽입합니다.
 
-**우리의 기대**: Conv2d -> Add -> ReLU
+**기대**: Conv2d -> Add -> ReLU
 
 **실제 변환된 IR**: Conv2d -> Reshape (Bias) -> Add -> ReLU
 
@@ -41,7 +41,7 @@ TVM의 범용 퓨전 패스인 `relax.transform.FuseOps`는 일반적인 Conv2d 
 - **메모리 대역폭 낭비**: 각 단계마다 데이터를 VRAM/RAM에 썼다가 다시 읽어오는 I/O 비용 발생.
 - **백엔드 가속 불가**: DNNL 등은 `conv2d_bias_relu`라는 융합 커널을 제공하지만, TVM이 패턴을 묶어주지 않아 이를 호출할 수 없음.
 
-## 3. 해결 방안 (Solution Approach)
+## 3. 해결 방안
 
 이 문제를 해결하기 위해 패턴 매칭(Pattern Matching) 기반의 새로운 퓨전 패스 `FuseConv2dReshapeAddRelu`를 구현했습니다.
 
@@ -56,11 +56,11 @@ TVM의 범용 퓨전 패스인 `relax.transform.FuseOps`는 일반적인 Conv2d 
   3. Add(Conv_Output, Reshaped_Bias)
   4. ReLU(Add_Output)
 
-### 3.2. 목표 (Target)
+### 3.2. 목표
 
 이 패턴이 발견되면 `dnnl.conv2d_reshape_add_relu`라는 이름의 Composite Function으로 묶습니다. 이후 `MergeCompositeFunctions` 패스가 이를 인식하여 DNNL 백엔드로 오프로딩(Offloading)합니다.
 
-## 4. 구현 상세 (Implementation Details)
+## 4. 구현 상세
 
 ### 4.1. 패턴 매칭 및 패스 구현
 
@@ -100,7 +100,7 @@ class FuseConv2dReshapeAddRelu:
         )(mod)
 ```
 
-## 5. 검증 (Verification)
+## 5. 검증
 
 ### 5.1. 테스트 전략
 
