@@ -2,6 +2,7 @@
 title: '[TIR][Schedule] Add FuseReductionEpilogue primitive to fuse epilogue into reduction init - 1'
 date: 2025-12-01
 permalink: /posts/2025/12/tvm-fuse-reduction-epilogue-overview/
+excerpt: '대부분의 AI 가속기는 Output = Input * Weight + Bias를 한 번의 사이클에 처리하는 MAC(Multiply-Accumulate) 명령어를 지원합니다. 하지만 컴파일러가 생성한 중간 코드(TIR)에서 이 두 연산이 분리되어 있다면, 하드웨어의 성능을 온전히 끌어낼 수 없습니다. 이 포스트에서는 TVM의 MatMul 블록에 Bias Addition을 인라인할 수 없는 문제를 분석하고, 기존 스케줄링 프리미티브의 한계를 살펴봅니다.'
 tags:
   - TVM
   - 컴파일러
@@ -10,11 +11,11 @@ tags:
   - Schedule
 ---
 
+대부분의 AI 가속기는 Output = Input * Weight + Bias를 한 번의 사이클에 처리하는 MAC(Multiply-Accumulate) 명령어를 지원합니다. 하지만 컴파일러가 생성한 중간 코드(TIR)에서 이 두 연산이 분리되어 있다면, 하드웨어의 성능을 온전히 끌어낼 수 없습니다.
+
 ## 1. 개요
 
-대부분의 AI 가속기는 ```Output = Input * Weight + Bias를 한 번의 사이클에 처리하는 MAC(Multiply-Accumulate)``` 명령어를 지원합니다. 하지만 컴파일러가 생성한 중간 코드(TIR)에서 이 두 연산이 분리되어 있다면, 해당  하드웨어의 기능을 사용할 수 없습니다.
-
-현재 TVM은 MatMul 블록에 Bias Addition을 인라인 할 수 없습니다. 문제를 분석하고, 이를 어떻게 개선하면 될지 정리했습니다.
+현재 TVM은 MatMul 블록에 Bias Addition을 인라인 할 수 없습니다. 기존의 강력한 스케줄링 도구들도 이 단순한 패턴 앞에서 무력합니다. 문제를 분석하고, 이를 어떻게 개선하면 될지 정리했습니다.
 
 ## 2. 문제 상황
 
