@@ -30,7 +30,7 @@ tags:
 
 ### 수식의 변화
 
-**Before** (임시 버퍼 사용):
+Before (임시 버퍼 사용):
 
 1. 초기화:
    $$temp_{i,j} = 0$$
@@ -41,7 +41,7 @@ tags:
 3. 최종 결과:
    $$D_{i,j} = temp_{i,j} + C_{i,j}$$
 
-**After** (직접 누적):
+After (직접 누적):
 
 1. Bias로 초기화:
    $$D_{i,j} = C_{i,j}$$
@@ -64,14 +64,13 @@ tags:
 
 가장 중요한 단계입니다. Reduction Block 내부의 T.init() 섹션을 찾아 수정합니다.
 
-**변경 전 (AS-IS)**:
+변경 전 (AS-IS):
 
 ```python
 with T.init():
     temp[vi, vj] = 0  # 0으로 초기화
 ```
-
-**변경 후 (TO-BE)**:
+변경 후 (TO-BE):
 
 ```python
 with T.init():

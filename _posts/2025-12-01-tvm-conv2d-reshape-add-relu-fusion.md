@@ -27,9 +27,8 @@ tags:
 
 일반적으로 우리는 Bias Add를 단순한 덧셈으로 생각합니다. 하지만 PyTorch 프론트엔드가 Conv2d(bias=True)를 Relax IR로 변환할 때, 브로드캐스팅(Broadcasting)을 명시하기 위해 Reshape 연산을 중간에 삽입합니다.
 
-**기대**: Conv2d -> Add -> ReLU
-
-**실제 변환된 IR**: Conv2d -> Reshape (Bias) -> Add -> ReLU
+기대: Conv2d -> Add -> ReLU
+실제 변환된 IR: Conv2d -> Reshape (Bias) -> Add -> ReLU
 
 ### 2.2. 기존 최적화(FuseOps)의 한계
 
@@ -37,9 +36,9 @@ TVM의 범용 퓨전 패스인 `relax.transform.FuseOps`는 일반적인 Conv2d 
 
 이로 인해 다음과 같은 성능 저하가 발생했습니다.
 
-- **커널 오버헤드**: 4개의 연산(Conv, Reshape, Add, ReLU)이 각각 별도의 커널로 실행됨.
-- **메모리 대역폭 낭비**: 각 단계마다 데이터를 VRAM/RAM에 썼다가 다시 읽어오는 I/O 비용 발생.
-- **백엔드 가속 불가**: DNNL 등은 `conv2d_bias_relu`라는 융합 커널을 제공하지만, TVM이 패턴을 묶어주지 않아 이를 호출할 수 없음.
+- 커널 오버: 4개의 연산(Conv, Reshape, Add, ReLU)이 각각 별도의 커널로 실행됨.
+-  메모리 대역폭 낭비: 각 단계마다 데이터를 VRAM/RAM에 썼다가 다시 읽어오는 I/O 비용 발생.
+- 백엔드 가속 불가: DNNL 등은 `conv2d_bias_relu`라는 융합 커널을 제공하지만, TVM이 패턴을 묶어주지 않아 이를 호출할 수 없음.
 
 ## 3. 해결 방안
 
@@ -49,8 +48,8 @@ TVM의 범용 퓨전 패스인 `relax.transform.FuseOps`는 일반적인 Conv2d 
 
 단순한 연결이 아니라, 데이터 흐름의 구조를 정확히 명시하는 패턴을 정의합니다.
 
-- **입력**: Data, Weight, Bias
-- **흐름**:
+- 입력: Data, Weight, Bias
+- 흐름:
   1. Conv2d(Data, Weight)
   2. Reshape(Bias) (Shape 변경)
   3. Add(Conv_Output, Reshaped_Bias)
@@ -64,7 +63,7 @@ TVM의 범용 퓨전 패스인 `relax.transform.FuseOps`는 일반적인 Conv2d 
 
 ### 4.1. 패턴 매칭 및 패스 구현
 
-**파일**: `python/tvm/relax/transform/fuse_conv2d_reshape_add_relu.py`
+파일: `python/tvm/relax/transform/fuse_conv2d_reshape_add_relu.py`
 
 `FuseOpsByPattern`을 활용하여 특정 패턴을 감지하고 묶어주는 로직입니다.
 
@@ -106,9 +105,9 @@ class FuseConv2dReshapeAddRelu:
 
 구현된 패스가 의도한 대로 동작하는지 확인하기 위해 `tests/python/relax/test_conv2d_reshape_add_relu.py`를 작성했습니다.
 
-1. **IR 생성**: PyTorch가 생성하는 것과 동일한 구조(Conv -> Reshape -> Add -> ReLU)의 Relax IR을 정의합니다.
-2. **패스 적용**: `FuseConv2dReshapeAddRelu` 패스를 실행합니다.
-3. **확인**: 결과 IR이 4개의 개별 연산 대신 하나의 Composite Function으로 변환되었는지, 그리고 Codegen 속성이 부여되었는지 확인합니다.
+1. IR 생성: PyTorch가 생성하는 것과 동일한 구조(Conv -> Reshape -> Add -> ReLU)의 Relax IR을 정의합니다.
+2. 패스 적용: `FuseConv2dReshapeAddRelu` 패스를 실행합니다.
+3. 확인: 결과 IR이 4개의 개별 연산 대신 하나의 Composite Function으로 변환되었는지, 그리고 Codegen 속성이 부여되었는지 확인합니다.
 
 ### 5.2. 테스트 코드
 

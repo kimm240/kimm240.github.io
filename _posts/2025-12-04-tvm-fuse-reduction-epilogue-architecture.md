@@ -44,11 +44,11 @@ graph TD
     G --> H
 ```
 
-**Step 1: Analysis (분석)**에서는 `ReductionEpilogueFuser`가 두 블록이 융합 가능한지 검증합니다. 패턴 매칭을 통해 Epilogue 블록이 단순 덧셈 형태인지, Reduction 블록이 완전한 형태인지 확인합니다.
+Step 1: Analysis에서는 `ReductionEpilogueFuser`가 두 블록이 융합 가능한지 검증합니다. 패턴 매칭을 통해 Epilogue 블록이 단순 덧셈 형태인지, Reduction 블록이 완전한 형태인지 확인합니다.
 
-**Step 2: Transformation (변환)**에서는 검증이 완료된 블록들을 융합합니다. `CreateFusedReductionBlock`이 새로운 블록을 생성하고, Init 구문을 0에서 Bias로 변경하며, `BufferReplacer`가 모든 temp 버퍼 참조를 최종 출력 버퍼 D로 교체합니다.
+Step 2: Transformation에서는 검증이 완료된 블록들을 융합합니다. `CreateFusedReductionBlock`이 새로운 블록을 생성하고, Init 구문을 0에서 Bias로 변경하며, `BufferReplacer`가 모든 temp 버퍼 참조를 최종 출력 버퍼 D로 교체합니다.
 
-**Step 3: Substitution (대체)**에서는 `SingleBlockFusionReplacer`가 전체 AST 트리를 순회하며 기존 블록들을 제거하고 새 융합 블록으로 교체합니다. 불필요한 temp 버퍼 할당도 함께 제거됩니다.
+Step 3: Substitution에서는 `SingleBlockFusionReplacer`가 전체 AST 트리를 순회하며 기존 블록들을 제거하고 새 융합 블록으로 교체합니다. 불필요한 temp 버퍼 할당도 함께 제거됩니다.
 
 ## 핵심 클래스 관계도
 
@@ -86,11 +86,11 @@ classDiagram
 
 이 클래스 다이어그램은 세 가지 핵심 클래스의 역할과 관계를 보여줍니다. `ReductionEpilogueFuser`는 분석과 변환을 총괄하는 메인 클래스이며, `BufferReplacer`를 사용하여 버퍼 교체를 수행하고, `SingleBlockFusionReplacer`를 위해 융합된 블록을 생성합니다.
 
-**ReductionEpilogueFuser**는 프리미티브의 핵심 클래스로, 패턴 분석부터 블록 생성까지 전체 프로세스를 관리합니다. 내부적으로 `epilogue_addend_`와 `epilogue_output_buffer_` 같은 상태를 유지하여 변환 과정에서 필요한 정보를 전달합니다.
+`ReductionEpilogueFuser`는 프리미티브의 핵심 클래스로, 패턴 분석부터 블록 생성까지 전체 프로세스를 관리합니다. 내부적으로 `epilogue_addend_`와 `epilogue_output_buffer_` 같은 상태를 유지하여 변환 과정에서 필요한 정보를 전달합니다.
 
-**BufferReplacer**는 `StmtExprMutator`를 상속받아 AST를 순회하며 특정 버퍼를 다른 버퍼로 교체하는 역할을 합니다. 이를 활용하여 모든 temp 버퍼 참조를 최종 출력 버퍼로 바꿔야 합니다.
+`BufferReplacer`는 `StmtExprMutator`를 상속받아 AST를 순회하며 특정 버퍼를 다른 버퍼로 교체하는 역할을 합니다. 이를 활용하여 모든 temp 버퍼 참조를 최종 출력 버퍼로 바꿔야 합니다.
 
-**SingleBlockFusionReplacer**는 `StmtMutator`를 상속받아 전체 트리에서 블록을 교체하거나 제거하는 작업을 수행합니다. 기존 Reduction 블록은 새 융합 블록으로 교체되고, Epilogue 블록은 완전히 제거됩니다.
+`SingleBlockFusionReplace`는 `StmtMutator`를 상속받아 전체 트리에서 블록을 교체하거나 제거하는 작업을 수행합니다. 기존 Reduction 블록은 새 융합 블록으로 교체되고, Epilogue 블록은 완전히 제거됩니다.
 
 ## AST 변환 과정 시각화
 
@@ -113,9 +113,9 @@ graph LR
     A1 -.->|removed| B1
 ```
 
-이 다이어그램은 융합 전후의 블록 구조 변화를 보여줍니다. **Before Fusion**에서는 두 개의 분리된 블록이 존재합니다: `multiply` 블록은 temp 버퍼에 쓰고, `add` 블록은 temp와 C를 읽어서 D에 씁니다.
+이 다이어그램은 융합 전후의 블록 구조 변화를 보여줍니다. Before Fusion에서는 두 개의 분리된 블록이 존재합니다: `multiply` 블록은 temp 버퍼에 쓰고, `add` 블록은 temp와 C를 읽어서 D에 씁니다.
 
-**After Fusion**에서는 하나의 융합된 블록만 존재합니다. 이 블록은 C, A, B를 읽고 D에 직접 쓰며, Init 단계에서 D = C로 초기화하고 Update 단계에서 D += A*B를 수행합니다. 분리된 블록들은 제거되어 더 이상 존재하지 않습니다.
+After Fusion에서는 하나의 융합된 블록만 존재합니다. 이 블록은 C, A, B를 읽고 D에 직접 쓰며, Init 단계에서 D = C로 초기화하고 Update 단계에서 D += A*B를 수행합니다. 분리된 블록들은 제거되어 더 이상 존재하지 않습니다.
 
 ## 패턴 분석 상세 흐름
 
@@ -199,9 +199,9 @@ C++ 측에서는 `ConcreteScheduleNode::FuseReductionEpilogue()`가 호출되고
 
 이 시각화 가이드를 통해 `FuseReductionEpilogue` 프리미티브의 전체 아키텍처를 이해할 수 있습니다:
 
-1. **분석 단계**: `ReductionEpilogueFuser`가 패턴을 검증하고 융합 가능 여부를 판단
-2. **변환 단계**: `CreateFusedReductionBlock`과 `BufferReplacer`가 AST를 조작하여 새로운 융합 블록 생성
-3. **대체 단계**: `SingleBlockFusionReplacer`가 기존 블록을 제거하고 새 블록으로 교체
+1. 분석 단계: `ReductionEpilogueFuser`가 패턴을 검증하고 융합 가능 여부를 판단
+2. 변환 단계: `CreateFusedReductionBlock`과 `BufferReplacer`가 AST를 조작하여 새로운 융합 블록 생성
+3. 대체 단계: `SingleBlockFusionReplacer`가 기존 블록을 제거하고 새 블록으로 교체
 
 이 세 단계를 통해 MatMul과 Bias Add를 하나의 효율적인 Reduction Block으로 융합할 수 있게 됩니다.
 
