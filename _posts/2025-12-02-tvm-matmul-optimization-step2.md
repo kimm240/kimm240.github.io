@@ -164,30 +164,6 @@ graph TB
     REG -->|계산| E2
     REG -->|계산| E32
 ```
-
-#### Loop Reordering 효과
-
-```mermaid
-graph LR
-    subgraph "Before: k가 바깥쪽"
-        B1[k=0] --> B2[i,j 반복]
-        B2 --> B3[C 읽기/쓰기<br/>K번 반복]
-    end
-    
-    subgraph "After: k_inner이 가장 안쪽"
-        A1[i,j 반복] --> A2[k_inner 반복]
-        A2 --> A3[레지스터에서<br/>누적]
-    end
-    
-    B3 -->|메모리 접근<br/>2048번| MEM1[Global Memory]
-    A3 -->|메모리 접근<br/>2번| MEM2[Global Memory]
-    
-    style B3 fill:#ffcccc
-    style A3 fill:#ccffcc
-```
-
-k_inner를 가장 안쪽에 배치함으로써 레지스터 재사용이 극대화되고 메모리 접근이 대폭 감소합니다.
-
 ## 4. 실험: 138개 설정 자동 탐색
 
 ### 파라미터 탐색
