@@ -203,3 +203,10 @@ C++ 측에서는 `ConcreteScheduleNode::FuseReductionEpilogue()`가 호출되고
 
 이 세 단계를 통해 MatMul과 Bias Add를 하나의 효율적인 Reduction Block으로 융합할 수 있게 됩니다.
 
+---
+
+**시리즈 포스트**
+
+- 이전: [Part 3. C++ 구현](/posts/2025/12/tvm-fuse-reduction-epilogue-implementation/)
+- 다음: [Part 5. 테스트 전략과 검증](/posts/2025/12/tvm-fuse-reduction-epilogue-testing/)
+

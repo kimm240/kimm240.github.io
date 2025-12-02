@@ -111,3 +111,9 @@ def fuse_reduction_epilogue(self, reduction_block, epilogue_block):
 ```
 
 이것이 바로 제가 fuse_reduction_epilogue를 설계하게 된 배경입니다.
+
+---
+
+**시리즈 포스트**
+
+- 다음: [Part 2. TIR 구조 변환 설계](/posts/2025/12/tvm-fuse-reduction-epilogue-design/)

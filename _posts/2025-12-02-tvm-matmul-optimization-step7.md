@@ -58,3 +58,7 @@ python benchmarks/compare_all_with_cublas.py
 
 ---
 
+**시리즈 포스트**
+
+- 이전: [Step 6: Loop Unrolling](/posts/2025/12/tvm-matmul-optimization-step6/)
+

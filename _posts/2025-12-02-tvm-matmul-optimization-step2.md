@@ -281,9 +281,8 @@ python test_individual/step2_parameter_sweep.py
 
 ---
 
-**교재 참조**: Muchnick Ch.20.4.3 (Tiling), Dragon Book Ch.11.10 (Locality)
+**시리즈 포스트**
 
-**핵심 기법**: 2-level tiling + k_innermost reordering
-
-**성과**: 95 → 482 GFLOPS (5.1배)
+- 이전: [Step 1: Simple GPU Binding](/posts/2025/12/tvm-matmul-optimization-step1/)
+- 다음: [Step 3: Shared Memory](/posts/2025/12/tvm-matmul-optimization-step3/)
 

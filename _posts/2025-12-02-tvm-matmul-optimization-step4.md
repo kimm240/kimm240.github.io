@@ -159,9 +159,10 @@ python test_individual/test_step4_final.py
 
 ---
 
-**교재 참조**: Muchnick Ch.20.3, Dragon Book Ch.11.10.1
+**시리즈 포스트**
 
-**핵심 기법**: C_local (Scalar Replacement) + reverse_compute_at at k_outer
+- 이전: [Step 3: Shared Memory](/posts/2025/12/tvm-matmul-optimization-step3/)
+- 다음: [Step 5: Software Pipelining](/posts/2025/12/tvm-matmul-optimization-step5/)
+---
 
-**성과**: 460 → 614 GFLOPS (+33%)
 

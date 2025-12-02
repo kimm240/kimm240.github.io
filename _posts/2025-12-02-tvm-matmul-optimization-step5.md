@@ -153,9 +153,8 @@ python test_individual/test_step5_pipelining.py
 
 ---
 
-**교재 참조**: Muchnick Ch.17.4, Dragon Book Ch.11.9
+**시리즈 포스트**
 
-**핵심 기법**: Software Pipelining (4-stage)
-
-**성과**: 614 → 1029 GFLOPS (+68%)
+- 이전: [Step 4: Vectorization + Local Memory](/posts/2025/12/tvm-matmul-optimization-step4/)
+- 다음: [Step 6: Loop Unrolling](/posts/2025/12/tvm-matmul-optimization-step6/)
 

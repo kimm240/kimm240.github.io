@@ -163,3 +163,10 @@ def fuse_reduction_epilogue(
 
 이 세 단계를 통해 MatMul과 Bias Add를 하나의 Reduction Block으로 융합하여, 하드웨어의 MAC 명령어를 효율적으로 활용할 수 있게 되었습니다.
 
+---
+
+**시리즈 포스트**
+
+- 이전: [Part 2. TIR 구조 변환 설계](/posts/2025/12/tvm-fuse-reduction-epilogue-design/)
+- 다음: [Part 4. 아키텍처 시각화](/posts/2025/12/tvm-fuse-reduction-epilogue-architecture/)
+

@@ -196,9 +196,7 @@ python test_individual/test_step1.py
 
 ---
 
-**교재 참조**: Dragon Book Ch.11 (Iteration Space, Data Parallelism)
+**시리즈 포스트**
 
-**핵심 개념**: 2D thread mapping (blockIdx.x, threadIdx.x)
-
-**성과**: 15 GFLOPS (CPU) → 95 GFLOPS (GPU, 6.3배)
+- 다음: [Step 2: Tiling + Loop Reordering](/posts/2025/12/tvm-matmul-optimization-step2/)
 

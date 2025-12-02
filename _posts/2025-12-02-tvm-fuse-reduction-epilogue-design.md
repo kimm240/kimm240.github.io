@@ -131,3 +131,12 @@ for i, j, k in T.grid(16, 16, 16):
         D[vi, vj] = D[vi, vj] + A[vi, vk] * B[vj, vk]
 ```
 
+이것이 바로 제가 fuse_reduction_epilogue를 설계하게 된 배경입니다. 기존 툴을 탓하는 대신, Reduction Block의 특수성을 이해하고 이를 처리할 수 있는 새로운 도구를 만들기로 했습니다. 다음 포스트에서는 0으로 초기화하는 관습을 깨고, "Bias로 초기화하는" 아이디어를 어떻게 구현했는지 구체적인 가이드라인을 다루겠습니다.
+
+---
+
+**시리즈 포스트**
+
+- 이전: [Part 1. 문제 분석과 기존 솔루션의 한계](/posts/2025/12/tvm-fuse-reduction-epilogue-overview/)
+- 다음: [Part 3. C++ 구현](/posts/2025/12/tvm-fuse-reduction-epilogue-implementation/)
+

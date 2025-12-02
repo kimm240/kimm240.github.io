@@ -178,9 +178,8 @@ python test_individual/test_step3_with_threads.py
 
 ---
 
-**교재 참조**: Muchnick Ch.20, Dragon Book Ch.11.10
+**시리즈 포스트**
 
-**핵심 기법**: cache_read("shared") + Cooperative Fetching
-
-**성과**: 큰 행렬 +101%, 중간 행렬 -5% (trade-off)
+- 이전: [Step 2: Tiling + Loop Reordering](/posts/2025/12/tvm-matmul-optimization-step2/)
+- 다음: [Step 4: Vectorization + Local Memory](/posts/2025/12/tvm-matmul-optimization-step4/)
 

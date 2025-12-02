@@ -99,9 +99,8 @@ python test_individual/test_step6_unrolling.py
 
 ---
 
-**교재 참조**: Muchnick Ch.17.5, Dragon Book Ch.10
+**시리즈 포스트**
 
-**핵심 기법**: Loop Unrolling
-
-**성과**: 1029 → 1050 GFLOPS (+2%)
+- 이전: [Step 5: Software Pipelining](/posts/2025/12/tvm-matmul-optimization-step5/)
+- 다음: [Step 7: cuBLAS Comparison](/posts/2025/12/tvm-matmul-optimization-step7/)
 
