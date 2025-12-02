@@ -3,6 +3,8 @@ title: '[TIR][Schedule] Add FuseReductionEpilogue primitive to fuse epilogue int
 date: 2025-12-01
 permalink: /posts/2025/12/tvm-fuse-reduction-epilogue-design/
 excerpt: 'Part 1에서 확인한 기존 스케줄링 프리미티브의 한계를 넘어, Reduction Block의 초기값을 0이 아닌 Bias로 설정하는 새로운 접근 방식을 제안합니다. 이 포스트에서는 TIR 구조 변환 설계와 구현 요구사항을 다룹니다.'
+categories:
+  - TVM
 tags:
   - TVM
   - 컴파일러

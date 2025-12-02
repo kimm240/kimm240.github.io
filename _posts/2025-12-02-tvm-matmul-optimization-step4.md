@@ -3,6 +3,8 @@ title: 'TVM 행렬 곱셈 최적화 - Step 4: Vectorization + Local Memory'
 date: 2025-12-02
 permalink: /posts/2025/12/tvm-matmul-optimization-step4/
 excerpt: 'Vectorization과 Local Memory(레지스터) 캐싱을 통해 평균 614 GFLOPS를 달성했습니다. 이 포스트에서는 Scalar Replacement 기법을 통한 레지스터 최적화와 벡터화를 통한 메모리 대역폭 활용을 다룹니다.'
+categories:
+  - TVM
 tags:
   - TVM
   - GPU

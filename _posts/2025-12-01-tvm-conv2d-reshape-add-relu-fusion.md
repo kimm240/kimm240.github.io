@@ -3,6 +3,8 @@ title: '[Optimization][Operator] Implement and enable Conv2d-Reshape-Add-ReLU fu
 date: 2025-12-01
 permalink: /posts/2025/12/tvm-conv2d-reshape-add-relu-fusion/
 excerpt: 'Conv2d + Bias + ReLU는 딥러닝에서 가장 흔한 패턴입니다. 하지만 PyTorch 모델을 TVM으로 가져올 때 Reshape 노드가 중간에 삽입되어 퓨전이 깨지는 문제가 발생합니다. 이 포스트는 이 문제를 해결하기 위한 패턴 매칭 기반 퓨전 패스 구현 과정을 다룹니다.'
+categories:
+  - TVM
 tags:
   - TVM
   - 컴파일러

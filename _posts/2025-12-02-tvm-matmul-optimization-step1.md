@@ -3,6 +3,8 @@ title: 'TVM 행렬 곱셈 최적화 - Step 1: Simple GPU Binding'
 date: 2025-12-02
 permalink: /posts/2025/12/tvm-matmul-optimization-step1/
 excerpt: '기본 GPU 구현으로 95 GFLOPS를 달성했습니다. CPU 대비 6.3배 향상된 성능을 보여주지만, A500 Peak (3.072 TFLOPS)의 3.1%에 불과합니다. 이 포스트에서는 Data Parallelism과 2D Thread Mapping을 통한 기본 GPU 구현을 다룹니다.'
+categories:
+  - TVM
 tags:
   - TVM
   - GPU

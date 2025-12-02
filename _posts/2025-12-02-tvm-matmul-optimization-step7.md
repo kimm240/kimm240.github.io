@@ -3,6 +3,8 @@ title: 'TVM 행렬 곱셈 최적화 - Step 7: cuBLAS Comparison'
 date: 2025-12-02
 permalink: /posts/2025/12/tvm-matmul-optimization-step7/
 excerpt: 'TVM으로 최적화한 행렬 곱셈 구현을 NVIDIA cuBLAS와 비교합니다. Step 6에서 달성한 1053 GFLOPS는 cuBLAS의 50.7%에 해당하며, 512x512 크기에서는 85.6%의 성능을 달성했습니다.'
+categories:
+  - TVM
 tags:
   - TVM
   - GPU

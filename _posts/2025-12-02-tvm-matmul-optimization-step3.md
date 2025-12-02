@@ -3,6 +3,8 @@ title: 'TVM 행렬 곱셈 최적화 - Step 3: Shared Memory'
 date: 2025-12-02
 permalink: /posts/2025/12/tvm-matmul-optimization-step3/
 excerpt: 'Shared Memory를 활용하여 큰 행렬(2048x2048)에서 101% 성능 향상을 달성했습니다. 이 포스트에서는 GPU 메모리 계층 구조와 Shared Memory를 통한 캐싱 전략, Cooperative Fetching 기법을 다룹니다.'
+categories:
+  - TVM
 tags:
   - TVM
   - GPU

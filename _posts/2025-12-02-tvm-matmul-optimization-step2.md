@@ -3,6 +3,8 @@ title: 'TVM 행렬 곱셈 최적화 - Step 2: Tiling + Loop Reordering'
 date: 2025-12-02
 permalink: /posts/2025/12/tvm-matmul-optimization-step2/
 excerpt: 'Tiling과 Loop Reordering을 통해 481 GFLOPS를 달성했습니다. Step 1 대비 5.1배 향상된 성능을 보여줍니다. 이 포스트에서는 캐시 최적화를 위한 Tiling 기법과 레지스터 재사용을 극대화하는 Loop Reordering을 다룹니다.'
+categories:
+  - TVM
 tags:
   - TVM
   - GPU

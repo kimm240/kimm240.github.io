@@ -3,6 +3,8 @@ title: 'TVM 행렬 곱셈 최적화 - Step 5: Software Pipelining'
 date: 2025-12-02
 permalink: /posts/2025/12/tvm-matmul-optimization-step5/
 excerpt: 'Software Pipelining을 통해 1029 GFLOPS를 달성했습니다. 메모리 레이턴시를 연산으로 은폐하여 평균 58% 성능 향상을 달성했습니다. 이 포스트에서는 여러 반복을 겹쳐서 실행하는 Software Pipelining 기법을 다룹니다.'
+categories:
+  - TVM
 tags:
   - TVM
   - GPU

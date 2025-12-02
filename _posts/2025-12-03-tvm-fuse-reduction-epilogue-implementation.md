@@ -3,6 +3,8 @@ title: '[TIR][Schedule] Add FuseReductionEpilogue primitive to fuse epilogue int
 date: 2025-12-01
 permalink: /posts/2025/12/tvm-fuse-reduction-epilogue-implementation/
 excerpt: 'Part 2에서 세운 계획을 바탕으로 TVM 컴파일러가 이해할 수 있는 C++ 코드로 구현합니다. 패턴 분석, AST 변환, 트리 재구성의 세 단계를 통해 Reduction Block과 Epilogue Block을 융합하는 프리미티브를 완성합니다.'
+categories:
+  - TVM
 tags:
   - TVM
   - 컴파일러

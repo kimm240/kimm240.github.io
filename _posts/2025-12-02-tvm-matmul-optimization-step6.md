@@ -3,6 +3,8 @@ title: 'TVM 행렬 곱셈 최적화 - Step 6: Loop Unrolling'
 date: 2025-12-02
 permalink: /posts/2025/12/tvm-matmul-optimization-step6/
 excerpt: 'Loop Unrolling을 통해 1050 GFLOPS를 달성했습니다. 루프 오버헤드를 제거하고 Instruction-Level Parallelism을 향상시켜 최종 성능을 끌어올렸습니다.'
+categories:
+  - TVM
 tags:
   - TVM
   - GPU

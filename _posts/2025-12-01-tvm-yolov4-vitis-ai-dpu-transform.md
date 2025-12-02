@@ -3,6 +3,8 @@ title: 'YOLOv4 → Vitis AI DPU 호환 TVM Transform Pass 구현'
 date: 2025-12-01
 permalink: /posts/2025/12/tvm-yolov4-vitis-ai-dpu-transform/
 excerpt: 'Vitis-AI의 Model Zoo는 DPU 제약을 고려해 이미 최적화된 AI 모델을 제공합니다. 본 문서는 TVM의 패턴 변환 패스를 활용해 원본 YOLOv4를 DPU 호환 YOLOv4-Leaky로 자동 변환하여, Model Zoo에서 제공하는 결과와 동등한 구조를 자동화하는 방법을 정리합니다.'
+categories:
+  - TVM
 tags:
   - TVM
   - 컴파일러

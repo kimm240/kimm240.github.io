@@ -3,6 +3,8 @@ title: '[TIR][Schedule] Add FuseReductionEpilogue primitive to fuse epilogue int
 date: 2025-12-01
 permalink: /posts/2025/12/tvm-fuse-reduction-epilogue-testing/
 excerpt: 'Part 3까지 구현한 FuseReductionEpilogue 프리미티브가 올바르게 동작하는지 검증하기 위한 테스트 전략을 다룹니다. 구조적 동등성 검사, 수치 정확도 검사, 엣지 케이스 테스트, Trace Roundtrip 검사를 통해 프리미티브의 안정성을 확보합니다.'
+categories:
+  - TVM
 tags:
   - TVM
   - 컴파일러

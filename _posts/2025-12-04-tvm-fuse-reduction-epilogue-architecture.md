@@ -3,6 +3,8 @@ title: '[TIR][Schedule] Add FuseReductionEpilogue primitive to fuse epilogue int
 date: 2025-12-01
 permalink: /posts/2025/12/tvm-fuse-reduction-epilogue-architecture/
 excerpt: 'TVM의 FuseReductionEpilogue 프리미티브의 복잡한 AST 변환 과정을 Mermaid 다이어그램으로 시각화합니다. 전체 아키텍처 흐름, 클래스 관계도, AST 변환 과정, 패턴 분석, 버퍼 교체 메커니즘, Python API 연결 구조를 다룹니다.'
+categories:
+  - TVM
 tags:
   - TVM
   - 컴파일러
