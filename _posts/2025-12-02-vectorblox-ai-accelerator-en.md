@@ -1,8 +1,8 @@
 ---
-title: 'VectorBlox: PolarFire FPGA용 AI 가속기'
+title: 'VectorBlox: AI Accelerator for PolarFire FPGA'
 date: 2025-12-04
-permalink: /posts/2025/12/vectorblox-ai-accelerator/
-excerpt: 'VectorBlox는 Microchip의 PolarFire FPGA를 위한 AI/ML 추론 가속기 플랫폼입니다. TensorFlow Lite INT8 네트워크를 지원하며, 소프트웨어 기반 구현으로 FPGA 재프로그래밍 없이 AI 모델을 배포할 수 있습니다. 5W 미만의 전력 효율과 오버레이 디자인을 통해 여러 네트워크를 동적으로 전환할 수 있습니다.'
+permalink: /posts/2025/12/vectorblox-ai-accelerator-en/
+excerpt: 'VectorBlox is an AI/ML inference accelerator platform for Microchip PolarFire FPGAs. It supports TensorFlow Lite INT8 networks and enables AI model deployment without FPGA reprogramming through software-based implementation. With power efficiency under 5W and overlay design, it can dynamically switch between multiple networks.'
 tags:
   - AI Accelerator
   - FPGA
@@ -13,13 +13,14 @@ tags:
 categories:
   - VectorBlox
 ---
-VectorBlox는 Microchip의 PolarFire FPGA 및 SoC를 위한 AI/ML 추론 가속기 플랫폼입니다. 소프트웨어 기반 구현을 통해 FPGA 재프로그래밍 없이 AI 모델을 배포할 수 있으며, 5W 미만의 전력 효율로 엣지 AI 애플리케이션에 최적화되어 있습니다.
 
-## 1. VectorBlox 개요
+VectorBlox is an AI/ML inference accelerator platform for Microchip PolarFire FPGAs and SoCs. It enables AI model deployment without FPGA reprogramming through software-based implementation, optimized for edge AI applications with power efficiency under 5W.
 
-### 지원하는 연산자[^1]
+## 1. VectorBlox Overview
 
-아래 표에 지원하는 연산자와, 각 연산자별로 VectorBlox에서의 제약 조건을 정리했습니다.
+### Supported Operators[^1]
+
+The table below lists supported operators and their known limitations in VectorBlox.
 
 | Operators | Known Limitations |
 |----------|-------------------|
@@ -90,56 +91,56 @@ VectorBlox는 Microchip의 PolarFire FPGA 및 SoC를 위한 AI/ML 추론 가속�
 
 ## 2. CoreVectorBlox IP[^2]
 
-CoreVectorBlox는 PolarFire FPGA용 신경망 가속기 IP 코어입니다.
+CoreVectorBlox is a neural network accelerator IP core for PolarFire FPGAs.
 
-### 아키텍처
+### Architecture
 
 ```mermaid
 graph TB
-    subgraph SYSTEM[시스템 레벨]
-        HOST[Mi-V 소프트 프로세서]
-        CORE[CoreVectorBlox]
-        DDR[DDR 메모리]
-        NVM[비휘발성 메모리]
+    subgraph SYSTEM["System Level"]
+        HOST["Mi-V Soft Processor"]
+        CORE["CoreVectorBlox"]
+        DDR["DDR Memory"]
+        NVM["Non-Volatile Memory"]
     end
     
-    subgraph CORE_INTERNAL[CoreVectorBlox 내부]
-        CTRL[제어 레지스터<br/>AXI4-Lite]
-        MCU[마이크로컨트롤러<br/>RISC-V]
-        MXP[MXP 벡터 프로세서]
-        CNN[CNN 가속기]
+    subgraph CORE_INTERNAL["CoreVectorBlox Internal"]
+        CTRL["Control Registers<br/>AXI4-Lite"]
+        MCU["Microcontroller<br/>RISC-V"]
+        MXP["MXP Vector Processor"]
+        CNN["CNN Accelerator"]
     end
     
-    HOST -->|제어| CTRL
-    CTRL -->|명령| MCU
-    MCU -->|벡터 명령| MXP
-    MCU -->|컨볼루션 명령| CNN
-    CORE -->|AXI4 마스터| DDR
-    NVM -->|부팅 시 로드| DDR
-    DDR -->|BLOB 읽기| CORE
+    HOST -->|Control| CTRL
+    CTRL -->|Commands| MCU
+    MCU -->|Vector Commands| MXP
+    MCU -->|Convolution Commands| CNN
+    CORE -->|AXI4 Master| DDR
+    NVM -->|Load at Boot| DDR
+    DDR -->|Read BLOB| CORE
 ```
 
-### 구성 요소
+### Components
 
-1. 제어 레지스터: AXI4-Lite 슬레이브 인터페이스를 통한 제어 및 상태 관리
-2. 마이크로컨트롤러: RISC-V 기반 소프트 프로세서로 네트워크 BLOB 파싱 및 벡터 프로세서 제어
-3. MXP 벡터 프로세서: 일반적인 신경망 레이어 처리용 벡터 프로세서
-4. CNN 가속기: 컨볼루션 레이어 전용 가속기
+1. Control Registers: Control and status management through AXI4-Lite slave interface
+2. Microcontroller: RISC-V based soft processor for network BLOB parsing and vector processor control
+3. MXP Vector Processor: Vector processor for general neural network layers
+4. CNN Accelerator: Dedicated accelerator for convolutional layers
 
-### 메모리 구성
+### Memory Components
 
-CoreVectorBlox는 다음 세 가지 BLOB(Binary Large Object)을 메모리에 저장합니다:
+CoreVectorBlox stores the following three BLOBs (Binary Large Objects) in memory:
 
-1. Firmware BLOB: 모든 네트워크에 공통으로 사용되는 펌웨어
-2. Network BLOB: VectorBlox SDK로 컴파일된 각 네트워크별 BLOB
-3. Network I/O: 네트워크 입력/출력 데이터
+1. Firmware BLOB: Firmware common to all networks
+2. Network BLOB: BLOB compiled by VectorBlox SDK for each network
+3. Network I/O: Network input/output data
 
 ## 3. VectorBlox SDK[^3]
 
-컴파일 과정은 다음과 같습니다.
-- `.pth`(Pytorch 모델) &rarr; `.onnx`(ONNX 모델) &rarr; `.tflite`(Tensorflow  Lite 모델) &rarr; `.vnnx`(VectorBlox 모델)
+The compilation process is as follows:
+- `.pth` (PyTorch model) → `.onnx` (ONNX model) → `.tflite` (TensorFlow Lite model) → `.vnnx` (VectorBlox model)
 
-`.pth`에서 `.onnx`로  변환할 때 `torch.onnx.export()`를,  `.onnx`에서 `.tflite`로 변환할 때 `onnx2tf --output_integer_quantized_tflite`를, `.tflite`에서 `.vnnx`로 변환할  때 `vnnx_compile` 명령어를 사용합니다.
+Use `torch.onnx.export()` to convert from `.pth` to `.onnx`, `onnx2tf --output_integer_quantized_tflite` to convert from `.onnx` to `.tflite`, and `vnnx_compile` command to convert from `.tflite` to `.vnnx`.
 
 [^1]: https://github.com/Microchip-Vectorblox/VectorBlox-SDK/blob/master/docs/OPS.md
 [^2]: [Aaron Severrance, Guy G.F. Lemieux,"Embedded Supercomputing in FPGAs with the VectorBlox MXP Matrix Processor", International Conference on Hardware/Software Codesign and System Synthesis, 2013, Montreal, QC, Canada](https://ieeexplore.ieee.org/document/6658993)
@@ -147,7 +148,5 @@ CoreVectorBlox는 다음 세 가지 BLOB(Binary Large Object)을 메모리에 �
 
 ---
 
-**Language**: [English](/posts/2025/12/vectorblox-ai-accelerator-en/)
-
-
+**Language**: [한국어 (Korean)](/posts/2025/12/vectorblox-ai-accelerator/)
 

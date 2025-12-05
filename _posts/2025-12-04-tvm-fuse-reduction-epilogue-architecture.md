@@ -212,3 +212,5 @@ C++ 측에서는 `ConcreteScheduleNode::FuseReductionEpilogue()`가 호출되고
 - 이전: [Part 3. C++ 구현](/posts/2025/12/tvm-fuse-reduction-epilogue-implementation/)
 - 다음: [Part 5. 테스트 전략과 검증](/posts/2025/12/tvm-fuse-reduction-epilogue-testing/)
 
+**Language**: [English](/posts/2025/12/tvm-fuse-reduction-epilogue-architecture-en/)
+

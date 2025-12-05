@@ -10,7 +10,7 @@ tags:
   - PyTorch
   - 모델 변환
 categories:
-  - AI Accelerator
+  - VectorBlox
 ---
 
 AI 모델을 VectorBlox의 `.vnnx` 형식으로 변환할 때, 일부 연산자[^1]가 VNNX에서 지원되지 않아 변환 오류가 발생합니다. 이 경우, 해당 연산자를 VNNX에서 지원하는 연산자로 교환해줘야 합니다. 
@@ -68,3 +68,5 @@ bbox = torch.stack((x1,y1,x2,y2), dim=-1)
 ---
 
 [^1]: https://github.com/Microchip-Vectorblox/VectorBlox-SDK/blob/master/docs/OPS.md
+
+**Language**: [English](/posts/2025/12/vectorblox-onnx-conversion-issues-en/)

@@ -121,3 +121,7 @@ def test_transform_pass():
     print(final_mod)
 ```
 
+---
+
+**Language**: [English](/posts/2025/12/tvm-conv2d-reshape-add-relu-fusion-en/)
+

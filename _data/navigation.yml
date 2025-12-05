@@ -8,14 +8,23 @@
 #      Markdown formatted page while the second is generated using JSON.
 
 main:
-  - title: "TVM"
-    url: /tvm/
-
-  - title: "MLIR"
-    url: /mlir/    
+  - title: "AI Compiler"
+    url: /ai-compiler/
+    children:
+      - title: "TVM"
+        url: /tvm/
+      - title: "MLIR"
+        url: /mlir/
 
   - title: "AI Accelerator"
-    url: /ai-accelerator/    
+    url: /ai-accelerator/
+    children:
+      - title: "VectorBlox"
+        url: /ai-accelerator/vectorblox/
+      - title: "Versal AI Engine"
+        url: /ai-accelerator/versal-ai-engine/
+      - title: "GPU"
+        url: /ai-accelerator/gpu/
     
   - title: "Research"
     url: /research/

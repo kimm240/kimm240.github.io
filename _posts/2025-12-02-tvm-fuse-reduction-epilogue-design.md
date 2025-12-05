@@ -142,3 +142,5 @@ for i, j, k in T.grid(16, 16, 16):
 - 이전: [Part 1. 문제 분석과 기존 솔루션의 한계](/posts/2025/12/tvm-fuse-reduction-epilogue-overview/)
 - 다음: [Part 3. C++ 구현](/posts/2025/12/tvm-fuse-reduction-epilogue-implementation/)
 
+**Language**: [English](/posts/2025/12/tvm-fuse-reduction-epilogue-design-en/)
+

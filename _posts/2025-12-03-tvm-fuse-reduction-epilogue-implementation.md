@@ -172,3 +172,5 @@ def fuse_reduction_epilogue(
 - 이전: [Part 2. TIR 구조 변환 설계](/posts/2025/12/tvm-fuse-reduction-epilogue-design/)
 - 다음: [Part 4. 아키텍처 시각화](/posts/2025/12/tvm-fuse-reduction-epilogue-architecture/)
 
+**Language**: [English](/posts/2025/12/tvm-fuse-reduction-epilogue-implementation-en/)
+

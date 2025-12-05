@@ -119,3 +119,5 @@ def fuse_reduction_epilogue(self, reduction_block, epilogue_block):
 **시리즈 포스트**
 
 - 다음: [Part 2. TIR 구조 변환 설계](/posts/2025/12/tvm-fuse-reduction-epilogue-design/)
+
+**Language**: [English](/posts/2025/12/tvm-fuse-reduction-epilogue-overview-en/)

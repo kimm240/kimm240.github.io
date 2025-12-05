@@ -264,3 +264,5 @@ python test_individual/step2_parameter_sweep.py
 - 이전: [Step 1: Simple GPU Binding](/posts/2025/12/tvm-matmul-optimization-step1/)
 - 다음: [Step 3: Shared Memory](/posts/2025/12/tvm-matmul-optimization-step3/)
 
+**Language**: [English](/posts/2025/12/tvm-matmul-optimization-step2-en/)
+

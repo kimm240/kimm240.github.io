@@ -6,14 +6,12 @@ author_profile: true
 ---
 
 {% include base_path %}
-{% include group-by-array collection=site.posts field="categories" %}
 
-{% for category in group_names %}
-  {% if category == "AI Accelerator" %}
-    {% assign posts = group_items[forloop.index0] %}
-    {% for post in posts %}
-      {% include archive-single.html %}
-    {% endfor %}
-  {% endif %}
-{% endfor %}
+AI Accelerator 관련 포스트를 확인하세요.
+
+## 카테고리
+
+- [VectorBlox](/ai-accelerator/vectorblox/) - VectorBlox 관련 포스트
+- [Versal AI Engine](/ai-accelerator/versal-ai-engine/) - Versal AI Engine 관련 포스트
+- [GPU](/ai-accelerator/gpu/) - GPU 관련 포스트
 

@@ -202,3 +202,5 @@ python test_individual/test_step1.py
 
 - 다음: [Step 2: Tiling + Loop Reordering](/posts/2025/12/tvm-matmul-optimization-step2/)
 
+**Language**: [English](/posts/2025/12/tvm-matmul-optimization-step1-en/)
+

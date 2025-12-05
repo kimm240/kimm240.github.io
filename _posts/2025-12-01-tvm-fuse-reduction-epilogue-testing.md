@@ -114,3 +114,5 @@ TVM은 사용자가 적용한 스케줄링 명령어들을 기록(Trace)하여 J
 
 - 이전: [Part 4. 아키텍처 시각화](/posts/2025/12/tvm-fuse-reduction-epilogue-architecture/)
 
+**Language**: [English](/posts/2025/12/tvm-fuse-reduction-epilogue-testing-en/)
+
