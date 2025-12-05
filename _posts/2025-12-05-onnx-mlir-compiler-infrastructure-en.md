@@ -20,7 +20,7 @@ onnx-mlir is an open-source compiler designed to solve this problem. It converts
 
 This post covers three key elements for understanding onnx-mlir: MLIR, ONNX, and onnx-mlir.
 
-## 1. MLIR (Multi-Level Intermediate Representation)
+## 1. MLIR (Multi-Level Intermediate Representation)[^1]
 
 Multi-Level IR: MLIR enables the design and implementation of code generators, transformers, and optimization tools at various levels of abstraction.
 
@@ -70,7 +70,7 @@ graph TB
 
 ---
 
-## 2. ONNX (Open Neural Network Exchange)
+## 2. ONNX (Open Neural Network Exchange)[^2]
 
 ONNX consists of computation graph models, data types, and operators. It provides a common language that all machine learning frameworks can use to describe models.
 
@@ -103,7 +103,7 @@ The IR structure analysis is as follows:
 
 ---
 
-## 3. onnx-mlir
+## 3. onnx-mlir[^3]
 
 onnx-mlir is a project that uses MLIR to compile ONNX models.
 
@@ -185,3 +185,6 @@ func.func @add_example(%arg0: memref<2x2xf32>, %arg1: memref<2x2xf32>) -> memref
 
 Language: [한국어 (Korean)](/posts/2025/12/onnx-mlir-compiler-infrastructure/)
 
+[^1]: [Chris Lattner et al., "MLIR: A Compiler Infrastructure for the End of Moore's Law", 2021 IEEE/ACM International Symposium on Code Generation and Optimization (CGO),Seoul, Korea (South)](https://ieeexplore.ieee.org/abstract/document/9370308)
+[^2]: https://github.com/onnx/onnx
+[^3]: [Jin, Tian, et al. "Compiling onnx neural network models using mlir." arXiv preprint arXiv:2008.08272 (2020)](https://arxiv.org/pdf/2008.08272)

@@ -20,7 +20,7 @@ onnx-mlir은 이러한 문제를 해결하기 위해 설계된 오픈 소스 컴
 
 포스트에서는 onnx-mlir을 이해하기 위한 세 가지 핵심 요소인 MLIR, ONNX, 그리고 onnx-mlir에 대해 다룹니다.
 
-## 1. MLIR (Multi-Level Intermediate Representation)
+## 1. MLIR (Multi-Level Intermediate Representation) [^1]
 
 Multi-Level IR: MLIR은 코드 생성기, 변환기, 최적화 도구의 설계 및 구현을 다양한 추상화 수준에서 할 수 있게 해줍니다.
 
@@ -70,7 +70,7 @@ graph TB
 
 ---
 
-## 2. ONNX (Open Neural Network Exchange)
+## 2. ONNX (Open Neural Network Exchange) [^2]
 
 ONNX는 계산 그래프 모델, 데이터 타입, 연산자로 구성되어 있습니다. 모든 머신러닝 프레임워크가 모델을 설명하는 데 사용할 수 있는 공통 언어를 제공하는 것입니다.
 
@@ -102,7 +102,7 @@ IR 구조 분석은 다음과 같습니다.
 
 ---
 
-## 3. onnx-mlir
+## 3. onnx-mlir [^3]
 
 onnx-mlir는 ONNX 모델을 컴파일하기 위해 MLIR를 활용하는 프로젝트입니다.
 
@@ -184,3 +184,6 @@ func.func @add_example(%arg0: memref<2x2xf32>, %arg1: memref<2x2xf32>) -> memref
 
 Language: [English](/posts/2025/12/onnx-mlir-compiler-infrastructure-en/)
 
+[^1]: [Chris Lattner et al., "MLIR: A Compiler Infrastructure for the End of Moore's Law", 2021 IEEE/ACM International Symposium on Code Generation and Optimization (CGO),Seoul, Korea (South)](https://ieeexplore.ieee.org/abstract/document/9370308)
+[^2]: https://github.com/onnx/onnx
+[^3]: [Jin, Tian, et al. "Compiling onnx neural network models using mlir." arXiv preprint arXiv:2008.08272 (2020)](https://arxiv.org/pdf/2008.08272)
