@@ -14,8 +14,7 @@ categories:
   - VectorBlox
 ---
 
-`vnnx_tflite.py` is a core module that converts TensorFlow Lite (INT8) models to VectorBlox VNNX format.  
-It handles an end-to-end pipeline that splits TFLite models into multiple subgraphs, compiles each subgraph into VNNX binaries, and includes simulation.
+`vnnx_tflite.py` is a core module that converts TensorFlow Lite models to VectorBlox VNNX format.
 
 ## 1. Overall Flow Overview
 
@@ -118,52 +117,15 @@ def update_offsets(vnnx_graph, Nodes, weights_offset=None, min_addr=None):
 
 Thanks to this process, the VNNX runtime can find all tensor and weight locations using only fixed offset information.
 
-### 2.4 Validation Simulation: `vbx.sim.Model`
-
-After generating the VNNX binary, simulation-based validation is performed through `vbx.sim.Model`.
-
-- Loads into memory with `m = vbx.sim.Model(data)`,
-- Calls `sim_outputs = m.run(m.test_input)` to check output for test input
-- Reads `replay_buffer_size`, `fixed_replay_buffer*`, etc. from `model_bytes` recorded during execution
-  and reflects the optimal replay buffer size and offsets back
-
-On failure, it immediately exits with `sys.stderr.write('ERROR: model failed to run\n')` followed by `sys.exit(1)`.  
-In other words, VNNX that does not pass the simulator is treated as a build failure.
-
-## 3. Call Relationship with lite_flow.py
-
-`lite_flow.py` provides a high-level API that users call directly.
-
-```python
-def tflite_to_vnnx(tflite, size_config, output_filename=None, ...):
-    ...
-    json_subgraphs, engine_graphs_nx = generate_split_graphs(tflite, tmp_dir, ...)
-    ...
-    # Get TFLite IO and convert NHWC -> CHW
-    inputs, outputs = get_tflite_io(tflite, inputs, None, mean=mean, rgb=rgb, scale=scale)
-    ...
-    vnnx_graph_binary = generate_vnnx_from_json_subgraphs(
-        json_graph, size_config, inputs, outputs,
-        include_io_data, tmp_dir, engine_graphs_nx
-    )
-```
-
-- Divides TFLite into multiple subgraphs with `generate_split_graphs`,
-- Converts inputs/outputs to VNNX format (CHW) with `get_tflite_io` and `transpose_io_to_vnnx`,
-- Finally calls `generate_vnnx_from_json_subgraphs` (= `vnnx_tflite.py`) to generate the VNNX binary.
-
-In other words, `lite_flow.py` handles input/output preprocessing + subgraph splitting,  
-while the actual VNNX graph/binary generation is performed in `vnnx_tflite.py`.
-
 ## 3. Summary and Future Plans
 
 - `vnnx_tflite.py` is:
-  - The core implementation of the model compiler that converts TFLite (INT8) models to VNNX,
+  - The core implementation of the model compiler that converts TFLite models to VNNX,
   - And manages operator mapping, memory layout calculation, and simulation validation.
 - The currently published `vnnx_tflite.py` has limitations in fully covering all patterns of the latest AI models (e.g., latest YOLO/Segmentation/Transformer series).  
-- To solve this, I analyzed ("reverse-engineered") the actual SDK internal code to extend operator mapping logic to support latest operator combinations and network patterns, and created a custom version with modifications to ensure memory layout and simulation validation paths work stably with latest models as well.
+- To solve this, I analyzed ("reverse-engineered") the actual SDK internal code to extend operator mapping logic to support latest operator combinations and network patterns, and created a custom version with modifications to ensure memory layout works stably with latest models as well.
 
 ---
 
-**Language**: [한국어 (Korean)](/posts/2025/12/vectorblox-vnnx-tflite-internals/)
+Language: [한국어 (Korean)](/posts/2025/12/vectorblox-vnnx-tflite-internals/)
 
