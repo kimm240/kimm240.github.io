@@ -126,6 +126,10 @@ graph TB
 3. MXP 벡터 프로세서: 일반적인 신경망 레이어 처리용 벡터 프로세서
 4. CNN 가속기: 컨볼루션 레이어 전용 가속기
 
+### MXP 벡터 프로세서 아키텍처
+
+![CoreVectorBlox MXP 벡터 프로세서 상세 아키텍처](/images/corevectorblox-mxp-architecture.png)
+
 ### 메모리 구성
 
 CoreVectorBlox는 다음 세 가지 BLOB(Binary Large Object)을 메모리에 저장합니다:

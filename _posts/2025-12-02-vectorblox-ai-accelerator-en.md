@@ -127,6 +127,10 @@ graph TB
 3. MXP Vector Processor: Vector processor for general neural network layers
 4. CNN Accelerator: Dedicated accelerator for convolutional layers
 
+### MXP Vector Processor Architecture
+
+![CoreVectorBlox MXP Vector Processor Detailed Architecture](/images/corevectorblox-mxp-architecture.png)
+
 ### Memory Components
 
 CoreVectorBlox stores the following three BLOBs (Binary Large Objects) in memory:
