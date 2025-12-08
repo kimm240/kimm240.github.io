@@ -133,16 +133,9 @@ $(document).ready(function () {
     }
   });
 
-  // Init smooth scroll, this needs to be slightly more than then fixed masthead height
-  // Exclude dropdown toggle links from smooth scroll
-  $("a:not(.dropdown-toggle)").smoothScroll({
-    offset: -scssMastheadHeight,
-    preventDefault: false,
-  });
-
   // Enable dropdown menu toggle on click for menu items with children
-  // Use capture phase to ensure this runs before other handlers
-  $(document).on("click", ".masthead__menu-item--has-children > a.dropdown-toggle", function(e) {
+  // This must run BEFORE smoothScroll initialization
+  $(".masthead__menu-item--has-children > a.dropdown-toggle").on("click", function(e) {
     e.preventDefault();
     e.stopPropagation();
     e.stopImmediatePropagation();
@@ -163,6 +156,13 @@ $(document).ready(function () {
     }
     
     return false;
+  });
+
+  // Init smooth scroll, this needs to be slightly more than then fixed masthead height
+  // Exclude dropdown toggle links from smooth scroll
+  $("a:not(.dropdown-toggle)").smoothScroll({
+    offset: -scssMastheadHeight,
+    preventDefault: false,
   });
 
   // Close dropdown when clicking outside
