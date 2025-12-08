@@ -70,9 +70,11 @@
     > a {
       position: relative;
       padding-right: 1.5em;
+      cursor: pointer;
     }
 
-    &:hover .masthead__submenu {
+    &:hover .masthead__submenu,
+    &.active .masthead__submenu {
       display: block;
     }
   }

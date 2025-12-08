@@ -139,4 +139,31 @@ $(document).ready(function () {
     preventDefault: false,
   });
 
+  // Enable dropdown menu toggle on click for menu items with children
+  $(".masthead__menu-item--has-children > a").on("click", function(e) {
+    e.preventDefault();
+    var $parent = $(this).parent();
+    var $submenu = $parent.find(".masthead__submenu");
+    
+    // Close other open dropdowns
+    $(".masthead__menu-item--has-children").not($parent).removeClass("active");
+    $(".masthead__submenu").not($submenu).css("display", "none");
+    
+    // Toggle current dropdown
+    $parent.toggleClass("active");
+    if ($parent.hasClass("active")) {
+      $submenu.css("display", "block");
+    } else {
+      $submenu.css("display", "none");
+    }
+  });
+
+  // Close dropdown when clicking outside
+  $(document).on("click", function(e) {
+    if (!$(e.target).closest(".masthead__menu-item--has-children").length) {
+      $(".masthead__menu-item--has-children").removeClass("active");
+      $(".masthead__submenu").css("display", "none");
+    }
+  });
+
 });
