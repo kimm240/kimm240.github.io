@@ -17,7 +17,7 @@ main:
         url: /mlir/
 
   - title: "AI Accelerator"
-    url: /ai-accelerator/
+    # url: /ai-accelerator/
     children:
       - title: "VectorBlox"
         url: /ai-accelerator/vectorblox/
