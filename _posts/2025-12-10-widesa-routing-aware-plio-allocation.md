@@ -1,5 +1,5 @@
 ---
-title: 'WideSA의 Routing-Aware PLIO 할당 알고리즘'
+title: '[논문 리뷰]WideSA의 Routing-Aware PLIO 할당 알고리즘'
 date: 2025-12-10
 permalink: /posts/2025/12/widesa-routing-aware-plio-allocation/
 excerpt: 'WideSA는 Versal ACAP에서 높은 AIE 배열 활용도를 달성하기 위한 매핑 방안입니다. 라우팅-인식 PLIO 할당 알고리즘을 통해 PLIO 포트와 AIE 코어 사이의 데이터 입/출력 경로를 구축하고, 컴파일 성공률을 높입니다.'

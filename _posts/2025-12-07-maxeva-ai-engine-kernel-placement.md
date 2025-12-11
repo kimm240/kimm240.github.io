@@ -1,5 +1,5 @@
 ---
-title: 'MaxEVA의 AI Engine 커널 배치 전략 및 통신 방식'
+title: '[논문 리뷰]MaxEVA의 AI Engine 커널 배치 전략 및 통신 방식'
 date: 2025-12-07
 permalink: /posts/2025/12/maxeva-ai-engine-kernel-placement/
 excerpt: 'MaxEVA 프레임워크는 Versal AI Engine 배열의 활용도를 최대화하고 MatMul 커널과 애더 트리 간의 통신에서 DMA 사용을 최소화하여 효율성을 높이는 정교한 배치 전략을 사용합니다.'

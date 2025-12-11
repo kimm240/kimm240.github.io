@@ -1,5 +1,5 @@
 ---
-title: 'MaxEVA: AI Engine Kernel Placement Strategy and Communication Methods'
+title: '[Paper Review]MaxEVA: AI Engine Kernel Placement Strategy and Communication Methods'
 date: 2025-12-07
 permalink: /posts/2025/12/maxeva-ai-engine-kernel-placement-en/
 excerpt: 'The MaxEVA framework employs a sophisticated placement strategy that maximizes Versal AI Engine array utilization and minimizes DMA usage in communication between MatMul kernels and adder trees, enhancing overall efficiency.'
