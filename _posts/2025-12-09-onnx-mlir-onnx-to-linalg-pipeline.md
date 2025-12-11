@@ -80,7 +80,7 @@ rewriter.replaceOp(matMulOp, matmulResult);
 
 ## 3. 실행 결과
 ### ONNX IR
-행렬 $\mathbf{A}(2 \times 3)$와 $\mathbf{B}(3 \times 4)$의 곱셈을 정의합니다.
+행렬 $\mathbf{A} \in \mathbb{R}^{2 \times 3}$와 $\mathbf{B} \in \mathbb{R}^{3 \times 4}$의 곱셈을 정의합니다.
 
 ```
 func.func @test_matmul_2d(%arg0 : tensor<2x3xf32>, %arg1 : tensor<3x4xf32>) -> tensor<2x4xf32> {

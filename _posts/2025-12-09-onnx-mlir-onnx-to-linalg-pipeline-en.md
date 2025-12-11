@@ -82,7 +82,7 @@ Finally, we replace the original `onnx.MatMul` operation with the generated Lina
 
 ### ONNX IR
 
-Defines the multiplication of matrices $\mathbf{A}(2 \times 3)$ and $\mathbf{B}(3 \times 4)$.
+Defines the multiplication of matrices $\mathbf{A} \in \mathbb{R}^{2 \times 3}$ and $\mathbf{B} \in \mathbb{R}^{3 \times 4}$.
 
 ```
 func.func @test_matmul_2d(%arg0 : tensor<2x3xf32>, %arg1 : tensor<3x4xf32>) -> tensor<2x4xf32> {
