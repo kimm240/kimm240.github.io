@@ -18,7 +18,7 @@ tags:
 
 TVM은 Python API(tir.Schedule)를 제공하지만, 그 뒷단의 무거운 연산과 트리 변환(Transformation) 로직은 대부분 C++로 작성되어 있습니다. 이번 구현은 `src/tir/schedule/primitive/compute_inline.cc` 파일에서 진행됩니다.
 
-## 2. 구현 구조 (Architecture)
+## 1. 구현 구조 (Architecture)
 
 구현은 크게 세 단계로 나뉩니다.
 
@@ -31,7 +31,7 @@ TVM은 Python API(tir.Schedule)를 제공하지만, 그 뒷단의 무거운 연�
 3. Substitution: `SingleBlockFusionReplacer` 클래스
    - 기존의 두 블록을 도려내고, 새로 만든 융합 블록을 이식합니다.
 
-## 3. Step 1: 패턴 분석기 (ReductionEpilogueFuser)
+## 2. Step 1: 패턴 분석기 (ReductionEpilogueFuser)
 
 가장 먼저 해야 할 일은 "이 블록들을 합쳐도 안전한가?"를 판단하는 것입니다. 이를 위해 `ReductionEpilogueFuser` 클래스를 정의했습니다. `BodyPatternAllowFusion` 메서드가 전체적인 검증(predicate 확인, BufferStore 확인 등)을 총괄하며, 핵심 패턴 매칭은 `AnalyzeEpiloguePattern`에서 수행합니다.
 
@@ -63,7 +63,7 @@ bool ReductionEpilogueFuser::AnalyzeEpiloguePattern(const PrimExpr& value) {
 
 이 로직 덕분에 `temp + C`뿐만 아니라 `C + temp` 순서로 되어 있어도(교환법칙) 문제없이 Bias 항(`epilogue_addend_`)을 추출해낼 수 있습니다.
 
-## 4. Step 2: 블록 재조립 (CreateFusedReductionBlock)
+## 3. Step 2: 블록 재조립 (CreateFusedReductionBlock)
 
 검증이 끝났다면, `CreateFusedReductionBlock` 함수가 실행됩니다. Reduction Block을 복제한 뒤 내부 코드를 교체하는 작업입니다.
 
@@ -105,7 +105,7 @@ class BufferReplacer : public StmtExprMutator {
 
 또한, 블록 상단에 명시된 Read/Write Region 정보도 함께 업데이트해주어야 합니다. 이를 놓치면 TVM의 IR 검증 단계(Validator)에서 에러가 발생합니다.
 
-## 5. Step 3: 트리 이식 (SingleBlockFusionReplacer)
+## 4. Step 3: 트리 이식 (SingleBlockFusionReplacer)
 
 새로운 융합 블록(`new_fused_block_`)이 완성되었습니다. 이제 `SingleBlockFusionReplacer` 클래스를 통해 전체 트리(Scope)에서 옛날 블록들(multiply, add)을 제거하고 새 블록을 끼워 넣습니다.
 
@@ -126,7 +126,7 @@ Stmt VisitStmt_(const BlockRealizeNode* realize) final {
 
 삭제된 자리에 남은 `Evaluate(0)`는 이후 `SeqStmt::Flatten` 과정을 통해 깔끔하게 정리됩니다. 마지막으로 더 이상 사용되지 않는 temp 버퍼의 `Allocate` 노드도 찾아서 제거해 주면 TIR 트리가 깨끗해집니다.
 
-## 6. Python API 연결 (FFI Binding)
+## 5. Python API 연결 (FFI Binding)
 
 C++ 구현이 끝났지만, 사용자는 Python에서 이 기능을 쓰고 싶어 합니다. TVM의 FFI(Foreign Function Interface)를 통해 길을 뚫어줍니다.
 
@@ -157,7 +157,7 @@ def fuse_reduction_epilogue(
     )
 ```
 
-## 7. 결론
+## 6. 결론
 
 이로써 FuseReductionEpilogue 프리미티브의 구현이 모두 완료되었습니다.
 

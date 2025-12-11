@@ -17,9 +17,7 @@ In [Part 1], we confirmed that existing scheduling primitives (compute_inline, e
 
 Therefore, we need a new approach beyond simply merging blocks. This post covers the logical design process.
 
-## 1. Overview
-
-## 2. Idea
+## 1. Idea
 
 The flow of the existing approach that processes matrix multiplication (MatMul) and bias addition (Bias Add) separately is as follows:
 
@@ -51,7 +49,7 @@ After (direct accumulation):
 2. Direct accumulation:
    $$D_{i,j} = D_{i,j} + \sum_{k} A_{i,k} \times B_{j,k}$$
 
-## 3. TIR Structure Transformation Design
+## 2. TIR Structure Transformation Design
 
 Let's specifically design how to implement this idea at the TIR (Tensor IR) level, TVM's intermediate representation. The new primitive FuseReductionEpilogue we will implement must perform the following 3-step transformation.
 
@@ -93,7 +91,7 @@ temp[vi, vj] = temp[vi, vj] + ...
 
 Once the work is complete, the temp buffer allocation that is no longer needed and the Epilogue (add) block that has nothing to do are completely removed from the tree.
 
-## 4. Requirements Analysis for Implementation
+## 3. Requirements Analysis for Implementation
 
 We've organized the functions needed to move the above design into actual compiler code. This list will serve as a checklist when implementing in C++ in Part 3.
 
@@ -114,7 +112,7 @@ We've organized the functions needed to move the above design into actual compil
 
 - The loop indices (i, j) of the Epilogue block and the loop indices (i, j, k) of the Reduction block may be mapped differently. Variable mapping logic is needed to correctly connect them.
 
-## 5. Expected Results
+## 4. Expected Results
 
 If implemented according to this design, we will get optimized TIR code as follows:
 

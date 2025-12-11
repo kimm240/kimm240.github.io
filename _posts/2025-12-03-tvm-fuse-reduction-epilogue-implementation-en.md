@@ -18,7 +18,7 @@ Based on the plan established in [Part 2], it's time to implement it in C++ code
 
 TVM provides a Python API (tir.Schedule), but most of the heavy computation and tree transformation logic behind it is written in C++. This implementation is done in the `src/tir/schedule/primitive/compute_inline.cc` file.
 
-## 2. Implementation Structure (Architecture)
+## 1. Implementation Structure (Architecture)
 
 The implementation is divided into three main stages.
 
@@ -31,7 +31,7 @@ The implementation is divided into three main stages.
 3. Substitution: `SingleBlockFusionReplacer` class
    - Removes the existing two blocks and grafts the newly created fused block.
 
-## 3. Step 1: Pattern Analyzer (ReductionEpilogueFuser)
+## 2. Step 1: Pattern Analyzer (ReductionEpilogueFuser)
 
 The first thing to do is determine "Is it safe to merge these blocks?" For this, we defined the `ReductionEpilogueFuser` class. The `BodyPatternAllowFusion` method oversees overall validation (predicate checking, BufferStore checking, etc.), and core pattern matching is performed in `AnalyzeEpiloguePattern`.
 
@@ -63,7 +63,7 @@ bool ReductionEpilogueFuser::AnalyzeEpiloguePattern(const PrimExpr& value) {
 
 Thanks to this logic, we can extract the Bias term (`epilogue_addend_`) without problems even if it's in the order `C + temp` (commutative property), not just `temp + C`.
 
-## 4. Step 2: Block Reassembly (CreateFusedReductionBlock)
+## 3. Step 2: Block Reassembly (CreateFusedReductionBlock)
 
 Once validation is complete, the `CreateFusedReductionBlock` function executes. This is the work of cloning the Reduction Block and then replacing the internal code.
 
@@ -105,7 +105,7 @@ class BufferReplacer : public StmtExprMutator {
 
 Additionally, the Read/Write Region information specified at the top of the block must also be updated. Missing this will cause errors in TVM's IR validation stage (Validator).
 
-## 5. Step 3: Tree Grafting (SingleBlockFusionReplacer)
+## 4. Step 3: Tree Grafting (SingleBlockFusionReplacer)
 
 The new fused block (`new_fused_block_`) is complete. Now, through the `SingleBlockFusionReplacer` class, we remove the old blocks (multiply, add) from the entire tree (Scope) and insert the new block.
 
@@ -126,7 +126,7 @@ Stmt VisitStmt_(const BlockRealizeNode* realize) final {
 
 The `Evaluate(0)` left in the deleted location is cleanly organized through the subsequent `SeqStmt::Flatten` process. Finally, if we find and remove the `Allocate` node of the temp buffer that is no longer used, the TIR tree becomes clean.
 
-## 6. Python API Connection (FFI Binding)
+## 5. Python API Connection (FFI Binding)
 
 The C++ implementation is complete, but users want to use this feature from Python. We connect through TVM's FFI (Foreign Function Interface).
 
@@ -157,7 +157,7 @@ def fuse_reduction_epilogue(
     )
 ```
 
-## 7. Conclusion
+## 6. Conclusion
 
 This completes the implementation of the FuseReductionEpilogue primitive.
 
