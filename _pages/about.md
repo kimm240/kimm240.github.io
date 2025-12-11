@@ -10,7 +10,7 @@ redirect_from:
 ## Introduction
 
 ## Education
-B.S. in Computer Science and Engineering, 서강대학교, Cum Laude
+B.S. in Computer Science and Engineering, Sogang University, Cum Laude
 
 ## Research
 ### Accept
@@ -21,6 +21,8 @@ B.S. in Computer Science and Engineering, 서강대학교, Cum Laude
 ## Open Source Contribution
 ### Merged
 * [ [TIR][Schedule] Add FuseReductionEpilogue primitive to fuse epilogue](https://github.com/apache/tvm/pull/18418) @ TVM
+
+* [  Add ONNXToLinalg conversion pass with MatMul support](https://github.com/onnx/onnx-mlir/pull/3343) @ ONNX-MLIR
 
 ### Reviewed
 *  [[Optimization][Operator] Implement and enable Conv2d-Reshape-Add-ReLU fusion](https://github.com/apache/tvm/pull/18240) @ TVM
