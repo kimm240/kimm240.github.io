@@ -183,7 +183,11 @@ func.func @add_example(%arg0: memref<2x2xf32>, %arg1: memref<2x2xf32>) -> memref
 
 ---
 
-Language: [한국어 (Korean)](/posts/2025/12/onnx-mlir-compiler-infrastructure/)
+**Series Posts**
+
+- Next: [ONNX-MLIR Linalg Dialect Integration: Compilation Flow and Optimization Benefits](/posts/2025/12/onnx-mlir-linalg-dialect-en/)
+
+**Language**: [한국어 (Korean)](/posts/2025/12/onnx-mlir-compiler-infrastructure/)
 
 [^1]: [Chris Lattner et al., "MLIR: A Compiler Infrastructure for the End of Moore's Law", 2021 IEEE/ACM International Symposium on Code Generation and Optimization (CGO),Seoul, Korea (South)](https://ieeexplore.ieee.org/abstract/document/9370308)
 [^2]: https://github.com/onnx/onnx

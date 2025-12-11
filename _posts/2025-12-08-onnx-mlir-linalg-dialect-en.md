@@ -81,5 +81,10 @@ graph TD
 
 ---
 
-Language: [한국어 (Korean)](/posts/2025/12/onnx-mlir-linalg-dialect/)
+**Series Posts**
+
+- Previous: [What is an onnx-mlir?](/posts/2025/12/onnx-mlir-compiler-infrastructure-en/)
+- Next: [ONNXToLinalg Pipeline Construction: MatMul Operation Conversion Implementation](/posts/2025/12/onnx-mlir-onnx-to-linalg-pipeline-en/)
+
+**Language**: [한국어 (Korean)](/posts/2025/12/onnx-mlir-linalg-dialect/)
 

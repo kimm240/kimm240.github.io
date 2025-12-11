@@ -80,5 +80,10 @@ graph TD
 
 ---
 
-Language: [English](/posts/2025/12/onnx-mlir-linalg-dialect-en/)
+**시리즈 포스트**
+
+- 이전: [onnx-mlir란 무엇인가?](/posts/2025/12/onnx-mlir-compiler-infrastructure/)
+- 다음: [ONNXToLinalg 파이프라인 구축: MatMul 연산 변환 구현](/posts/2025/12/onnx-mlir-onnx-to-linalg-pipeline/)
+
+**Language**: [English](/posts/2025/12/onnx-mlir-linalg-dialect-en/)
 
