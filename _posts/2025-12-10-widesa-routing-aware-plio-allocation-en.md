@@ -1,8 +1,8 @@
 ---
-title: 'WideSA: Routing-Aware PLIO Allocation Algorithm'
+title: '[Paper Review]WideSA: Routing-Aware PLIO Allocation Algorithm'
 date: 2025-12-10
 permalink: /posts/2025/12/widesa-routing-aware-plio-allocation-en/
-excerpt: 'WideSA is a mapping scheme for achieving high AIE array utilization in Versal ACAP. Through routing-aware PLIO allocation algorithm, it constructs data input/output paths between PLIO ports and AIE cores, improving compilation success rate.'
+excerpt: 'WideSA uses a routing-aware PLIO allocation algorithm to solve routing problems that occur during high AIE utilization. Through this algorithm, it constructs data input/output paths between PLIO ports and AIE cores, improving compilation success rate.'
 tags:
   - AI Accelerator
   - Versal AI Engine
@@ -57,11 +57,11 @@ To find PLIO allocations that satisfy the constraints, WideSA uses a heuristic g
 
 ![WIDESA_ALGO](/images/WIDESA_ALGO.png)
 
-1. Initialize available placement set $A$ as all columns where PLIO ports can be placed.
-2. Collect column coordinates ($x_{col}$) of all AIE cores connected to the current PLIO to be allocated into list $S$.
-3. Sort list $S$ to calculate the median ($S[num/2]$).
-4. Find the nearest available coordinate to the median position from available placement set $A$ and assign it to the current PLIO ($P[i]$).
-5. Remove the assigned coordinate from $A$ so it is not used for the next PLIO allocation.
+Initialize available placement set $A$ as all columns where PLIO ports can be placed.
+Collect column coordinates ($x_{col}$) of all AIE cores connected to the current PLIO to be allocated into list $S$.
+Sort list $S$ to calculate the median ($S[num/2]$).
+Find the nearest available coordinate to the median position from available placement set $A$ and assign it to the current PLIO ($P[i]$).
+Remove the assigned coordinate from $A$ so it is not used for the next PLIO allocation.
 
 By placing PLIO near the median, the average horizontal distance that data must travel through NoC can be minimized. This minimizes routing congestion.
 
