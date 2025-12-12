@@ -8,7 +8,6 @@ redirect_from:
 ---
 
 ## Introduction
-
 ## Education
 B.S. in Computer Science and Engineering, Sogang University, Cum Laude
 
