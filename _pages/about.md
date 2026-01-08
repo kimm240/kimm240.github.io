@@ -22,7 +22,7 @@ B.S. in Computer Science and Engineering, Sogang University, Cum Laude
 
 * [  Add ONNXToLinalg conversion pass with MatMul support](https://github.com/onnx/onnx-mlir/pull/3343) @ ONNX-MLIR <a href="/posts/2025/12/onnx-mlir-onnx-to-linalg-pipeline-en/" class="btn btn--small btn--info" style="margin-left: 0.5em; padding: 0.25em 0.75em; font-size: 0.75em;">Post</a>
 
-* [[TIR][Schedule] FuseReductionEpilogue: Add Clipping pattern support](https://github.com/apache/tvm/pull/18515) @ TVM <a href="/posts/2025/12/tvm-fuse-reduction-epilogue-overview-en/" class="btn btn--small btn--info" style="margin-left: 0.5em; padding: 0.25em 0.75em; font-size: 0.75em;">Post</a>
+* [[TIR][Schedule] FuseReductionEpilogue: Add Clipping pattern support](https://github.com/apache/tvm/pull/18515) @ TVM <a href="posts/2026/01/tvm-fuse-reduction-epilogue-clipping-en/" class="btn btn--small btn--info" style="margin-left: 0.5em; padding: 0.25em 0.75em; font-size: 0.75em;">Post</a>
 
 *  [ ONNX To LLVM Pass Backend using linalg](https://github.com/onnx/onnx-mlir/pull/3349) @ ONNX-MLIR <a href="/posts/2026/01/onnx-mlir-linalg-path-pipeline-en/" class="btn btn--small btn--info" style="margin-left: 0.5em; padding: 0.25em 0.75em; font-size: 0.75em;">Post</a>
 
