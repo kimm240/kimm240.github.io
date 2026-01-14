@@ -1,5 +1,5 @@
 ---
-title: 'ONNX-MLIR: Mixed Linalg and ONNX Operations를 위한 Bufferization'
+title: 'Mixed Linalg and ONNX Operations를 위한 Bufferization'
 date: 2026-01-14
 permalink: /posts/2026/01/onnx-mlir-bufferization-mixed-linalg-onnx/
 excerpt: 'ONNX-MLIR에서 linalg와 krnl을 동시에 bufferization해야 하는 경우의 문제를 해결합니다. One-Shot Bufferization과 Krnl Lowering을 혼합하여 사용하는 IR Lowering 과정을 상세히 설명합니다.'
