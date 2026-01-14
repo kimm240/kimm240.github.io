@@ -168,6 +168,7 @@ for (int i = 0; i < 2; i++) {
 **Series Posts**
 
 - Previous: [ONNXToLinalg Pipeline Construction: MatMul Operation Conversion Implementation](/posts/2025/12/onnx-mlir-onnx-to-linalg-pipeline-en/)
+- Next: [Bufferization for Mixed Linalg and ONNX Operations](/posts/2026/01/onnx-mlir-bufferization-mixed-linalg-onnx-en/)
 
 **Language**: [한국어](/posts/2026/01/onnx-mlir-linalg-path-pipeline/)
 
