@@ -28,7 +28,7 @@ B.S. in Computer Science and Engineering, Sogang University, Cum Laude
 
 *  [ Enable One-Shot Bufferization for Mixed Linalg and ONNX Operations ](https://github.com/onnx/onnx-mlir/pull/3358) @ ONNX-MLIR <a href="/posts/2026/01/onnx-mlir-bufferization-mixed-linalg-onnx-en/" class="btn btn--small btn--info" style="margin-left: 0.5em; padding: 0.25em 0.75em; font-size: 0.75em;">Post</a>
 
-*  [ [TIR][Schedule]Generalize fuseReductionEpilogue to support arbitrary epilogue expressions](https://github.com/apache/tvm/pull/18636) @ ONNX-MLIR <a href="/posts/2026/01/tvm-fuse-reduction-epilogue-generalization-en/" class="btn btn--small btn--info" style="margin-left: 0.5em; padding: 0.25em 0.75em; font-size: 0.75em;">Post</a>
+*  [ [TIR][Schedule]Generalize fuseReductionEpilogue to support arbitrary epilogue expressions](https://github.com/apache/tvm/pull/18636) @ TVM <a href="/posts/2026/01/tvm-fuse-reduction-epilogue-generalization-en/" class="btn btn--small btn--info" style="margin-left: 0.5em; padding: 0.25em 0.75em; font-size: 0.75em;">Post</a>
 
 *  [Fix memory corruption in LiftCFGToSCF when processing empty regions](https://github.com/iree-org/iree/pull/23131) @ IREE
 
