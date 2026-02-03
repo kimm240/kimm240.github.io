@@ -36,11 +36,11 @@ B.S. in Computer Science and Engineering, Sogang University, Cum Laude
 
 *  [Refactor ONNXToLinalg pass to use TableGen](https://github.com/onnx/onnx-mlir/pull/3362) @ ONNX-MLIR
 
+* [Implement ONNX Basic Conv to Linalg lowering](https://github.com/onnx/onnx-mlir/pull/3376) @ ONNX-MLIR
+
 ### Reviewed
 *  [[Optimization][Operator] Implement and enable Conv2d-Reshape-Add-ReLU fusion](https://github.com/apache/tvm/pull/18240) @ TVM <a href="/posts/2025/12/tvm-conv2d-reshape-add-relu-fusion-en/" class="btn btn--small btn--info" style="margin-left: 0.5em; padding: 0.25em 0.75em; font-size: 0.75em;">Post</a>
 
 * [Propagate binding correlation information to LLVM codegen for mutable binding fusion](https://github.com/iree-org/iree/pull/23184) @ IREE
 
-* [Fix thread-safety issue in ONNX to Linalg conversion](https://github.com/onnx/onnx-mlir/pull/3371) @ ONNX-MLIR
-
-* [Implement ONNX Basic Conv to Linalg lowering](https://github.com/onnx/onnx-mlir/pull/3376) @ ONNX-MLIR
+* [Fix thread-safety issue in ONNX to Linalg conversion](https://github.com/onnx/onnx-mlir/pull/3371) @ ONNX-M
