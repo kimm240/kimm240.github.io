@@ -111,6 +111,7 @@ The function signature has completely changed from `tensor` to `memref`. No more
 **Series Posts**
 
 - Previous: [Detailed Pipeline Stages with useLinalgPath Enabled and End-to-End Validation](/posts/2026/01/onnx-mlir-linalg-path-pipeline-en/)
+- Next: [Converting ONNX Conv to Linalg: conv_2d_nchw_fchw](/posts/2026/02/onnx-mlir-conv-to-linalg-en/)
 
 **Language**: [한국어 (Korean)](/posts/2026/01/onnx-mlir-bufferization-mixed-linalg-onnx/)
 

@@ -8,7 +8,7 @@ tags:
   - ONNX
   - Linalg
   - Compiler
-  - Optimization
+  - Optimizationㅆㅇ
   - Bufferization
 categories:
   - MLIR
@@ -111,6 +111,7 @@ func.func @test_full_pipeline(%arg0: memref<2x3xf32>, %arg1: memref<3x4xf32>, %a
 **시리즈 포스트**
 
 - 이전: [useLinalgPath 활성화 시 단계별 상세 파이프라인 및 End-to-End 검증](/posts/2026/01/onnx-mlir-linalg-path-pipeline/)
+- 다음: [ONNX Conv를 Linalg로 변환하기: conv_2d_nchw_fchw](/posts/2026/02/onnx-mlir-conv-to-linalg/)
 
 **Language**: [English](/posts/2026/01/onnx-mlir-bufferization-mixed-linalg-onnx-en/)
 
