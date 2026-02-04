@@ -43,4 +43,4 @@ B.S. in Computer Science and Engineering, Sogang University, Cum Laude
 
 * [Propagate binding correlation information to LLVM codegen for mutable binding fusion](https://github.com/iree-org/iree/pull/23184) @ IREE
 
-* [Fix thread-safety issue in ONNX to Linalg conversion](https://github.com/onnx/onnx-mlir/pull/3371) @ ONNX-M
+* [Fix thread-safety issue in ONNX to Linalg conversion](https://github.com/onnx/onnx-mlir/pull/3371) @ ONNX-MLIR
