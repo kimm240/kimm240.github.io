@@ -118,6 +118,7 @@ func.func @test_matmul_2d(...) -> tensor<2x4xf32> {
 **시리즈 포스트**
 
 - 이전: [ONNX-MLIR의 Linalg Dialect 도입: 컴파일 흐름과 최적화 이점](/posts/2025/12/onnx-mlir-linalg-dialect/)
+- 다음: [useLinalgPath 활성화 시 단계별 상세 파이프라인 및 End-to-End 검증](/posts/2026/01/onnx-mlir-linalg-path-pipeline/)
 
 **Language**: [English](/posts/2025/12/onnx-mlir-onnx-to-linalg-pipeline-en/)
 
