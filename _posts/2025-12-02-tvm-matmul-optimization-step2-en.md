@@ -106,7 +106,7 @@ j_thread, j_elem = sch.split(j_rest, factors=[threads_y, None])
 |----------|--------|--------|------|
 | 512x512 | 91 GFLOPS | 466 GFLOPS | 5.1x |
 | 1024x1024 | 95 GFLOPS | 482 GFLOPS | 5.1x |
-| 2048x2048 | - | 222 GFLOPS | - |
+
 
 Average: 390 GFLOPS
 

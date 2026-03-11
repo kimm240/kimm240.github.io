@@ -80,18 +80,6 @@ The data read when calculating `C[i][j]` is `A[i][...]`, `B[...][j]`, which are 
 
 In other words, in matrix multiplication, each operation is independent of each other, so they can be performed in parallel.
 
-### Data Parallelism on GPU
-
-**A500 GPU Structure**:
-- 16 SM (Streaming Multiprocessor)
-- 1024 FP32 CUDA Cores
-- Each SM can execute up to 1536 threads simultaneously
-
-**Basic Parallelization Strategy**:
-1. M × N independent calculations
-2. Assign each calculation to one thread
-3. 1024 cores process simultaneously
-
 ## 2. TVM TensorIR Implementation
 
 ### TensorIR Definition

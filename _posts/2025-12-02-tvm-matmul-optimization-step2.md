@@ -197,11 +197,7 @@ python test_individual/step2_parameter_sweep.py
 | 32x32x32 | 130 GFLOPS | 482 GFLOPS | 16 KB |
 | 64x64x64 | 59 GFLOPS | 254 GFLOPS | 1 MB |
 
-A500 특성:
-- L1 캐시: 32 KB/SM
-- L2 캐시: 2 MB (전체)
-- 32x32x32 타일 (16 KB) → L1에 fit
-- 64x64x64 타일 (1 MB) → L1 초과, 캐시 미스 증가
+- 32x32x32 타일: L1에 fit
 
 #### (3) 높은 ILP (Thread Tile)가 중요
 

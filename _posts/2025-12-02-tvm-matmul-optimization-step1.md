@@ -80,18 +80,6 @@ void matrix_multiply(const std::vector<std::vector<float>>& A,
 
 즉, 행렬 곱셈에서, 각 연산은 서로에게 독립적이므로, 병렬로 수행할 수 있습니다.
 
-### GPU의 Data Parallelism
-
-**A500 GPU 구조**:
-- 16 SM (Streaming Multiprocessor)
-- 1024 FP32 CUDA Cores
-- 각 SM은 최대 1536개 스레드 동시 실행
-
-**기본 병렬화 전략**:
-1. M × N개의 독립적인 계산
-2. 각 계산을 하나의 스레드에 할당
-3. 1024개 코어가 동시에 처리
-
 ## 2. TVM TensorIR 구현
 
 ### TensorIR 정의
