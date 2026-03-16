@@ -56,35 +56,7 @@ Shared Memory (64 KB/SM)
 ### Shared Memory 활용
 
 Shared Memory는 이 공간적 지역성을 활용합니다:
-타일(32×32) 단위로 데이터를 Shared Memory에 로드합니다. 그렇게 함으로써 블록 내 모든 스레드(32개)를 재사용할 수 있습니다. 그리고, 각 원소를 32번 재사용할 수 있습니다.
-
-#### Shared Memory 캐싱 흐름
-
-```mermaid
-sequenceDiagram
-    participant GM as Global Memory
-    participant SM as Shared Memory
-    participant T1 as Thread 1
-    participant T2 as Thread 2
-    participant T32 as Thread 32
-    
-    Note over GM,SM: k_outer 반복 시작
-    T1->>GM: A 타일[0:32, 0:32] 로드
-    T2->>GM: A 타일[0:32, 0:32] 로드
-    T32->>GM: A 타일[0:32, 0:32] 로드
-    GM-->>SM: Cooperative Fetching<br/>32 스레드가 협력하여 로드
-    
-    Note over SM,T32: __syncthreads()
-    
-    T1->>SM: A[0,0] 읽기
-    T1->>SM: B[0,0] 읽기
-    T2->>SM: A[0,1] 읽기
-    T2->>SM: B[1,0] 읽기
-    T32->>SM: A[31,31] 읽기
-    T32->>SM: B[31,31] 읽기
-    
-    Note over T1,T32: 각 원소를 32번 재사용
-```
+타일(32×32) 단위로 데이터를 Shared Memory에 로드합니다. 그렇게 함으로써 블록 내 모든 스레드(32개)를 재사용할 수 있습니다. 
 
 ## 2. TVM TensorIR 구현
 
