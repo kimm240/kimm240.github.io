@@ -2,7 +2,7 @@
 title: 'TVM Matrix Multiplication Optimization - Step 7: cuBLAS Comparison'
 date: 2025-12-02
 permalink: /posts/2025/12/tvm-matmul-optimization-step7-en/
-excerpt: 'We compare our TVM-optimized matrix multiplication implementation with NVIDIA cuBLAS. The 1053 GFLOPS achieved in Step 6 corresponds to 50.7% of cuBLAS, and we achieved 85.6% performance for 512x512 size.'
+excerpt: 'We compare our TVM-optimized matrix multiplication implementation with NVIDIA cuBLAS. The average 1039 GFLOPS achieved in Step 6 (Unrolling) corresponds to about 50% of cuBLAS, and we achieve around 79% performance for 512x512 size.'
 categories:
   - TVM
 tags:
@@ -23,27 +23,25 @@ tags:
 | Implementation | Performance | vs cuBLAS |
 |------|------|-----------|
 | NumPy (CPU) | 13 GFLOPS | 0.6% |
-| TVM Step 6 | 1053 GFLOPS | 50.7% |
+| TVM Step 6 | 1039 GFLOPS | 50.1% |
 | cuBLAS (NVIDIA) | 2074 GFLOPS | 100% |
 
 ### Size-Specific Details
 
-| Size | TVM Step 6 | cuBLAS | TVM/cuBLAS |
-|------|-----------|--------|------------|
-| 512x512 | 1115 GFLOPS | 1302 GFLOPS | **85.6%** |
-| 1024x1024 | 990 GFLOPS | 2846 GFLOPS | 34.8% |
+| Size | TVM Step 6 (Unrolling) | cuBLAS | TVM/cuBLAS |
+|------|------------------------|--------|------------|
+| 512x512 | 1028 GFLOPS | 1302 GFLOPS | **~79.0%** |
+| 1024x1024 | 1050 GFLOPS | 2846 GFLOPS | **~36.9%** |
 
 ## Analysis
 
-### Performance Characteristics of TVM Step 6
+### Performance Characteristics of TVM Step 6 (Unrolling)
 
-**Achieved 85.6% at 512x512 size**:
-- TVM's optimization techniques work effectively on small matrix sizes
-- Tiling, Shared Memory, Software Pipelining fit well
+**Around 79% at 512x512 size**:
+- For small matrices, the combination of Tiling, Shared Memory, Software Pipelining, and Loop Unrolling allows TVM to reach a high fraction of cuBLAS performance.
 
-**34.8% at 1024x1024 size**:
-- cuBLAS's advanced optimization techniques are more effective on large matrices
-- cuBLAS includes additional optimizations such as Tensor Core utilization
+**Around 37% at 1024x1024 size**:
+- For larger matrices, cuBLAS’s advanced optimizations (e.g., Tensor Core utilization, more aggressive tiling/vectorization) remain more effective.
 
 ## Execution
 

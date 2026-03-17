@@ -17,6 +17,15 @@ tags:
 # Step 2: Tiling + Loop Reordering
 481 GFLOPS 달성 (Step 1 대비 5.1배 향상)
 
+## 성과
+
+| 행렬 크기 | Step 1 | Step 2 | 향상 |
+|----------|--------|--------|------|
+| 512x512 | 91 GFLOPS | 466 GFLOPS | 5.1x |
+| 1024x1024 | 95 GFLOPS | 482 GFLOPS | 5.1x |
+
+평균: 390 GFLOPS
+
 ## 1. 컴파일러 이론: Tiling과 Loop Transformation
 
 ### Tiling (Blocking) - 캐시를 위한 루프 분할
@@ -211,15 +220,6 @@ TM=8, TN=4가 최적:
 - 레지스터 압력과 ILP의 최적 균형
 
 ## 5. 결과
-
-### 성능
-
-| 행렬 크기 | Step 1 | Step 2 | 향상 |
-|----------|--------|--------|------|
-| 512x512 | 91 GFLOPS | 466 GFLOPS | 5.1x |
-| 1024x1024 | 95 GFLOPS | 482 GFLOPS | 5.1x |
-
-평균: 390 GFLOPS
 
 ### 최적 설정
 
