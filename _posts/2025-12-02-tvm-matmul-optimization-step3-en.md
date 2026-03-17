@@ -107,54 +107,25 @@ for cache_block in [A_shared, B_shared]:
 After the above, the TensorIR structure looks like this.
 
 ```python
-// "1024 tasks in 8 chunks of 128"
-for (f_ty in 0..7) {
-    for (f_tx in 0..127) {
-        // fused = f_ty * 128 + f_tx
-        ...
-    }
-}
-```
-
-- `sch.bind(f_tx, "threadIdx.x")`: `bind` ties the `f_ty`, `f_tx` loops to the GPU’s thread IDs.
-
-Final TensorIR structure (conceptual CUDA code):
-
-```python
-// Runs in parallel across 32 threads.
-
-// 1. Each thread gets its hardware ID.
-int tx = threadIdx.x; // 0..3
-int ty = threadIdx.y; // 0..7
-
-// 2. Compute this thread’s range of work (1024 elements / 32 threads = 32 per thread).
-for (i = 0; i < 32; ++i) {
-    int element_index = (ty * 4 + tx) * 32 + i;
-
-    int src_ax0 = element_index / 32;
-    int src_ax1 = element_index % 32;
-    A_shared[src_ax0, src_ax1] = A_global[...];
-}
+# Cooperative fetching: 32 threads load 32x32 tile together
+for k_outer in range(K // BK):
+    # All threads cooperate to load A tile
+    for i in range(32):
+        A_shared[thread_id * 32 + i] = A_global[...]
+    
+    # Synchronize
+    __syncthreads()
+    
+    # Compute using cached data
+    for k_inner in range(BK):
+        C_local += A_shared[...] * B_shared[...]
 ```
 
 ## 3. Results Analysis
 
-### Tiling and Shared Memory Usage: Why Occupancy Doesn’t Drop Much
+Using Shared Memory doesn't always improve performance. This is because there are costs for copying from Global Memory to Shared Memory and synchronization costs for `__syncthreads()`. This can be seen in the results for 512x512 and 1024x1024.
 
-Because we already applied **block-level tiling** in Step 2, each block’s working set is limited to 32×32 tiles. In Step 3 we only put those same tiles into Shared Memory.
-
-- A_shared: 32×32 × 4 bytes = 4 KB  
-- B_shared: 32×32 × 4 bytes = 4 KB  
-- **Shared Memory per block ≈ 8 KB**
-
-With about 64 KB of Shared Memory per SM on the A500, 8 KB per block means we can fit many blocks per SM in terms of shared memory alone. So **tiling keeps the shared-memory footprint small, and occupancy is not heavily limited by Shared Memory**; it is usually limited by registers or block size instead.
-
-### Why 512/1024 Get Slower vs Why 2048 Gets Faster
-
-Using Shared Memory does not always improve performance. There is extra cost from **explicit copies from Global to Shared Memory** and **`__syncthreads()`** synchronization.
-
-- **512×512, 1024×1024**: Problem sizes are relatively small, so there are fewer blocks, and in Step 2 the L1/L2 caches already handle the tiles reasonably well. Here the **copy and sync overhead** outweighs the benefit of fewer cache misses, so Step 3 is slower.
-- **2048×2048 (additional experiment)**: The three matrices (A, B, C) alone are 2048×2048×4×3 ≈ 48 MB, well beyond the L2 cache (2 MB). Required tiles often are not in L2, so cache misses dominate. Here Shared Memory acts as cache and greatly reduces global memory traffic, so the benefit outweighs the copy/sync overhead and we see about **+101%** improvement.
+However, in [Further experiment] 2048×2048, we improved +101%. The working set of data accessed simultaneously by multiple SMs cannot be reliably maintained in the L2 cache, increasing cache miss.
 
 ## Execution
 
