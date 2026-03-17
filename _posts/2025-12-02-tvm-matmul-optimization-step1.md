@@ -19,11 +19,10 @@ tags:
 
 | 행렬 크기 | NumPy (CPU) | Step 1 (GPU) | 향상 배수 |
 |----------|------------|-------------|----------|
-| 256x256 | 5 GFLOPS | 91 GFLOPS | 18배 |
 | 512x512 | 20 GFLOPS | 91 GFLOPS | 4.6배 |
 | 1024x1024 | 15 GFLOPS | 95 GFLOPS | 6.3배 |
 
-평균: 95 GFLOPS
+평균 (512, 1024): 93 GFLOPS
 
 ## 1. 컴파일러 이론: Data Parallelism
 

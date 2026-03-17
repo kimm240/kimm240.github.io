@@ -22,9 +22,8 @@ tags:
 |----------|--------|--------|
 | 512x512 | 804 GFLOPS | +94% |
 | 1024x1024 | 593 GFLOPS | +29% |
-| 2048x2048 | 549 GFLOPS | +23% |
 
-Average: 614 GFLOPS
+Average (512, 1024): 699 GFLOPS
 
 ## 1. Compiler Theory: Scalar Replacement (Register Pipelining)
 

@@ -19,11 +19,10 @@ Basic GPU Implementation: 95 GFLOPS
 
 | Matrix Size | NumPy (CPU) | Step 1 (GPU) | Speedup |
 |----------|------------|-------------|----------|
-| 256x256 | 5 GFLOPS | 91 GFLOPS | 18x |
 | 512x512 | 20 GFLOPS | 91 GFLOPS | 4.6x |
 | 1024x1024 | 15 GFLOPS | 95 GFLOPS | 6.3x |
 
-Average: 95 GFLOPS
+Average (512, 1024): 93 GFLOPS
 
 ## 1. Compiler Theory: Data Parallelism
 

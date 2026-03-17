@@ -22,9 +22,8 @@ tags:
 |----------|--------|--------|
 | 512x512 | 804 GFLOPS | +94% |
 | 1024x1024 | 593 GFLOPS | +29% |
-| 2048x2048 | 549 GFLOPS | +23% |
 
-평균: 614 GFLOPS
+평균 (512, 1024): 699 GFLOPS
 
 ## 1. 컴파일러 이론: Scalar Replacement (Register Pipelining)
 

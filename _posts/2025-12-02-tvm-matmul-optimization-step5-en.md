@@ -21,11 +21,10 @@ Achieved 1029 GFLOPS
 
 | Matrix Size | Step 5 | Improvement |
 |----------|--------|--------|
-| 256x256 | 855 GFLOPS | +68% |
 | 512x512 | 1020 GFLOPS | +27% |
 | 1024x1024 | 1029 GFLOPS | +74% |
 
-Average: 968 GFLOPS
+Average (512, 1024): 1025 GFLOPS
 
 ## 1. Compiler Theory: Software Pipelining
 
