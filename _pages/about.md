@@ -11,12 +11,6 @@ redirect_from:
 ## Education
 B.S. in Computer Science and Engineering, Sogang University, Cum Laude
 
-## Research
-### Accept
-
-### Reviewed
-* Scalable High-Order Stencil Acceleration via Sender-Receiver Dataflow in Spatial Architectures @ IEEE Transactions on Parallel and Distributed Systems (TPDS)
-
 ## Open Source Contribution
 ### Merged
 * [ [TIR][Schedule] Add FuseReductionEpilogue primitive to fuse epilogue](https://github.com/apache/tvm/pull/18418) @ TVM <a href="/posts/2025/12/tvm-fuse-reduction-epilogue-overview-en/" class="btn btn--small btn--info" style="margin-left: 0.5em; padding: 0.25em 0.75em; font-size: 0.75em;">Post</a>
